@@ -1,0 +1,1282 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diagnóstico gratuito: seu negócio no Google | Topo do Mapa</title>
+<meta name="description" content="Em 3 minutos, descubra o que está tirando clientes da sua empresa no mapa do Google. Diagnóstico gratuito, sem cadastro, para qualquer negócio local.">
+<meta name="theme-color" content="#1e8e3e">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<!-- Troque pelo endereço final da página -->
+<link rel="canonical" href="https://SEU-DOMINIO.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Diagnóstico gratuito: seu negócio no Google | Topo do Mapa">
+<meta property="og:description" content="Em 3 minutos, descubra o que está tirando clientes da sua empresa no mapa do Google. Diagnóstico gratuito, sem cadastro, para qualquer negócio local.">
+<meta property="og:url" content="https://SEU-DOMINIO.com.br/">
+<meta property="og:image" content="https://SEU-DOMINIO.com.br/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ea4335' d='M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z'/%3E%3Ccircle cx='12' cy='9' r='2.6' fill='%237a0d0a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&display=swap">
+<style>
+/* Layout: coluna única e estreita, muito espaço em branco; o único elemento com cor forte é o mapa, desenhado nas cores do Google Maps. */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --soft:#f6f6f4; --ink:#111214; --muted:#6c6f75; --line:#e9e9e6;
+  --cta:#111214; --cta-ink:#ffffff; --focus:#1a73e8; --accent:#1a73e8;
+  --ok:#188038; --warn:#b06000; --bad:#d93025;
+  --sans:"Geist", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --mono:"Geist Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e0f11; --surface:#16171a; --soft:#1b1c20; --ink:#f2f2f0; --muted:#9a9ca3; --line:#26272c;
+  --cta:#f2f2f0; --cta-ink:#0e0f11; --focus:#8ab4f8; --accent:#8ab4f8;
+  --ok:#81c995; --warn:#fdd663; --bad:#f28b82; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e0f11; --surface:#16171a; --soft:#1b1c20; --ink:#f2f2f0; --muted:#9a9ca3; --line:#26272c;
+  --cta:#f2f2f0; --cta-ink:#0e0f11; --focus:#8ab4f8; --accent:#8ab4f8;
+  --ok:#81c995; --warn:#fdd663; --bad:#f28b82; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px));padding-block:20px 56px}
+.app{max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{margin:0;text-wrap:balance;font-weight:600;letter-spacing:-.025em;line-height:1.1}
+h1{font-size:clamp(2rem,7.5vw,2.6rem)}
+h2{font-size:clamp(1.5rem,5.6vw,1.85rem)}
+h3{font-size:1.05rem;letter-spacing:-.01em}
+p{margin:0}
+.muted{color:var(--muted)}
+.label{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+.top{display:flex;align-items:center;justify-content:space-between;min-height:32px}
+.mark{display:flex;align-items:center;gap:8px;font-weight:600;font-size:.95rem;letter-spacing:-.01em}
+.mark i{width:8px;height:8px;border-radius:50%;background:#ea4335;display:block}
+.back{background:none;border:0;color:var(--muted);font:500 .9rem var(--sans);cursor:pointer;padding:6px 0}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.progress{height:2px;background:var(--line);overflow:hidden;margin-top:-12px}
+.progress span{display:block;height:100%;width:0;background:var(--ink);transition:width .4s ease}
+
+.screen{display:flex;flex-direction:column;gap:22px;animation:in .35s ease both}
+.screen .head{display:flex;flex-direction:column;gap:10px}
+@keyframes in{from{transform:translateY(6px)}to{transform:none}}
+@media (prefers-reduced-motion: reduce){.screen{animation:none}.progress span{transition:none}}
+
+/* ---- cartão do mapa: mundo próprio, sempre nas cores do Google Maps ---- */
+.gm{background:#fff;color:#202124;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(60,64,67,.25),0 2px 8px rgba(60,64,67,.12);font-family:Roboto, Arial, var(--sans)}
+.gm-search{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:12px;margin:12px;padding:10px 14px;border-radius:24px;box-shadow:0 1px 3px rgba(60,64,67,.3);font-size:.92rem;color:#202124;background:#fff}
+.gm-search svg{width:18px;height:18px;flex:none}
+.gm-map{position:relative;height:200px;background:#eef0f2}
+.gm-map canvas{width:100%;height:100%;display:block}
+.gm-list{display:flex;flex-direction:column}
+.gm-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:12px 16px;border-top:1px solid #e8eaed;align-items:center}
+.gm-row .nm{font-size:.98rem;font-weight:500;color:#202124;display:flex;align-items:center;gap:8px;min-width:0}
+.gm-row .nm span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gm-meta{font-size:.8rem;color:#70757a;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.gm-meta .r{color:#202124}
+.stars{display:inline-flex;gap:1px}
+.stars svg{width:12px;height:12px}
+.open{color:#188038}
+.closed{color:#d93025}
+.gm-btn{width:36px;height:36px;border-radius:50%;border:1px solid #dadce0;display:grid;place-items:center;color:#1a73e8;flex:none}
+.gm-btn svg{width:18px;height:18px}
+.gm-row.best{background:#f8fbff}
+.badge{font-size:.68rem;font-weight:500;color:#1a73e8;background:#e8f0fe;border-radius:4px;padding:2px 6px;white-space:nowrap}
+.gm-more{padding:10px 16px;border-top:1px solid #e8eaed;color:#1a73e8;font-size:.85rem;font-weight:500}
+.gm-row.you{background:#fef7e0}
+.gm-row.you .nm{color:#202124}
+.youtag{font-size:.68rem;font-weight:500;color:#b06000;background:#feefc3;border-radius:4px;padding:2px 6px}
+
+/* ---- opções ---- */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:10px;padding:16px 8px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:14px;cursor:pointer;color:var(--ink);font:500 .82rem/1.25 var(--sans);text-align:center;transition:border-color .15s, background .15s}
+.tile svg{width:30px;height:30px;stroke:var(--ink);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.tile .ic{width:56px;height:56px;border-radius:50%;background:var(--soft);display:grid;place-items:center}
+.tile:hover{border-color:var(--ink)}
+.tile.sel{border-color:var(--ink);background:var(--soft)}
+.list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:18px 2px;background:none;border:0;border-bottom:1px solid var(--line);
+  color:var(--ink);font:500 1rem var(--sans);text-align:left;cursor:pointer}
+.row small{display:block;font-weight:400;font-size:.85rem;color:var(--muted);margin-top:2px}
+.row .dot{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);flex:none;transition:border .15s}
+.row:hover .dot{border-color:var(--ink)}
+.row.sel .dot{border:6px solid var(--ink)}
+.hint{font-size:.88rem;color:var(--muted);padding-left:12px;border-left:2px solid var(--line)}
+
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;border-radius:999px;padding:17px 22px;
+  font:600 1rem var(--sans);cursor:pointer;text-decoration:none;background:var(--cta);color:var(--cta-ink);letter-spacing:-.01em}
+.btn svg{width:18px;height:18px}
+.fine{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 18px;font-size:.8rem;color:var(--muted)}
+
+/* análise */
+.analyzing{align-items:center;text-align:center;padding-block:56px;gap:18px}
+.spin{width:40px;height:40px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--ink);animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.spin{animation:none}}
+.steps{font-family:var(--mono);font-size:.75rem;color:var(--muted);display:grid;gap:6px}
+
+/* resultado */
+.scoreline{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.scoreline .num{font-size:3.4rem;font-weight:600;letter-spacing:-.04em;line-height:.9;font-variant-numeric:tabular-nums}
+.scoreline .num small{font-size:1rem;color:var(--muted);letter-spacing:0}
+.meter{flex:1;max-width:180px;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.meter .bar{width:100%;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.meter .bar span{display:block;height:100%;background:var(--m)}
+.checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.checks li{display:grid;grid-template-columns:18px 1fr;gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.checks i{width:8px;height:8px;border-radius:50%;margin:8px 0 0 4px;display:block}
+.checks .x i{background:var(--bad)} .checks .w i{background:var(--warn)} .checks .v i{background:var(--ok)}
+
+.offer{background:var(--soft);border-radius:20px;padding:24px 20px;display:flex;flex-direction:column;gap:18px}
+.offer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.offer li{display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:.95rem}
+.offer li svg{width:16px;height:16px;margin-top:4px;stroke:var(--ink);fill:none;stroke-width:2}
+.price{display:flex;align-items:baseline;gap:12px}
+.price s{color:var(--muted);font-size:.95rem}
+.price strong{font-size:2.6rem;font-weight:600;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.price strong small{font-size:1rem;font-weight:500;letter-spacing:0;margin-right:2px}
+.anchor{font-size:.85rem;color:var(--muted);margin-top:-10px}
+.bump{display:grid;grid-template-columns:20px 1fr auto;gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer}
+.bump input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--ink)}
+.bump b{font-weight:600;display:block;font-size:.92rem}
+.bump span{font-size:.84rem;color:var(--muted)}
+.bump em{font-style:normal;font-weight:600;font-size:.92rem;white-space:nowrap}
+.note{font-size:.78rem;color:var(--muted);text-align:center}
+.restart{background:none;border:0;color:var(--muted);font:500 .88rem var(--sans);cursor:pointer;align-self:center;text-decoration:underline;text-underline-offset:3px}
+</style>
+
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="mark"><i></i>Topo do Mapa</div>
+    <div class="topr"><span class="steptxt" id="stepTxt" hidden></span><button class="back" id="backBtn" type="button" hidden>Voltar</button></div>
+  </div>
+  <div class="progress" id="progressWrap" hidden><span id="bar"></span></div>
+  <main id="view"></main>
+</div>
+<div class="sticky" id="sticky" hidden><button class="btn lockbtn" type="button" id="stickyBtn" aria-disabled="true">
+  <span class="fill" id="lockFill"></span>
+  <svg class="lock" viewBox="0 0 24 24" aria-hidden="true"><path class="shackle" d="M7.5 11V7.5a4.5 4.5 0 0 1 9 0V11"/><rect x="5" y="11" width="14" height="10" rx="2.5"/><circle cx="12" cy="16" r="1.4" class="kh"/></svg>
+  <span class="txt" id="lockTxt">Role a página para liberar sua avaliação <b>GRATUITA</b></span>
+  <span class="pct" id="lockPct">0%</span>
+</button></div>
+
+<style>
+.why{display:flex;flex-direction:column;gap:4px;font-size:.88rem;color:var(--muted);padding:12px 14px;background:var(--soft);border-radius:12px}
+.why b{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.factor{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.factor i{width:6px;height:6px;border-radius:50%;background:var(--accent);display:block}
+.fb{display:grid;grid-template-columns:10px 1fr;gap:12px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface);animation:in .3s ease both}
+.fb > i{width:8px;height:8px;border-radius:50%;margin-top:8px;display:block}
+.fb.x > i{background:var(--bad)} .fb.w > i{background:var(--warn)} .fb.v > i{background:var(--ok)}
+.fb p{font-size:.95rem}
+.fb .tip{margin-top:8px;font-size:.88rem;color:var(--muted)}
+.fb .tip b{color:var(--ink);font-weight:600}
+.factors{display:flex;flex-direction:column;gap:14px}
+.frow{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:baseline}
+.frow .nm{font-weight:500;font-size:.95rem}
+.frow .vl{font-family:var(--mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.frow .bar{grid-column:1/-1;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.frow .bar span{display:block;height:100%;background:var(--m)}
+.frow small{grid-column:1/-1;font-size:.82rem;color:var(--muted)}
+.wins{display:flex;flex-direction:column;gap:0;counter-reset:w}
+.wins li{list-style:none;display:grid;grid-template-columns:28px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.wins li::before{counter-increment:w;content:counter(w);width:24px;height:24px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;font:500 .75rem var(--mono)}
+.wins b{display:block;font-weight:600;font-size:.95rem}
+.wins span{font-size:.88rem;color:var(--muted)}
+.wins{margin:0;padding:0}
+.lead{font-size:1.02rem}
+</style>
+<style>
+.wa-wrap{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;margin-inline:-4px;padding-inline:4px}
+.wa{flex:0 0 82%;max-width:320px;scroll-snap-align:start;background:#efeae2;border-radius:16px;overflow:hidden;color:#111b21;font-family:Roboto, Arial, var(--sans);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.wa-top{display:flex;align-items:center;gap:10px;background:#008069;color:#fff;padding:10px 12px}
+.wa-av{width:32px;height:32px;border-radius:50%;background:#dfe5e7;color:#54656f;display:grid;place-items:center;font-weight:600;font-size:.85rem}
+.wa-top b{display:block;font-size:.9rem;font-weight:500}
+.wa-top span{font-size:.72rem;opacity:.85}
+.wa-body{display:flex;flex-direction:column;gap:6px;padding:12px 10px 14px}
+.wa-msg{align-self:flex-start;max-width:88%;background:#fff;border-radius:8px;padding:6px 8px 4px;font-size:.88rem;line-height:1.35;box-shadow:0 1px .5px rgba(11,20,26,.13)}
+.wa-msg.me{align-self:flex-end;background:#d9fdd3}
+.wa-msg time{display:block;text-align:right;font-size:.65rem;color:#667781;margin-top:2px}
+.wa-img{flex:0 0 82%;max-width:320px;scroll-snap-align:start;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.wa-img img{display:block;width:100%;height:auto}
+.proof{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.proof div{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.proof svg{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.proof b{display:block;font-weight:600;font-size:.95rem}
+.proof span{font-size:.88rem;color:var(--muted)}
+.src{font-size:.75rem;color:var(--muted)}
+</style>
+<style>
+.hl{color:var(--accent)}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;background:linear-gradient(to top, var(--bg) 70%, transparent);
+  padding-top:24px;padding-bottom:calc(14px + env(safe-area-inset-bottom, 0px));
+  padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+.sticky .btn{max-width:480px;margin:0 auto;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+body.has-sticky{padding-bottom:120px}
+</style>
+<style>
+:root{--accent-soft:#e8f0fe;--frame:#1c1c1e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--accent-soft:#16233a;--frame:#2c2c30}}
+:root[data-theme="dark"]{--accent-soft:#16233a;--frame:#2c2c30}
+.intro h1{font-size:clamp(2.2rem,8.5vw,2.9rem)}
+.mini{width:100%;max-width:380px;margin:0 auto}
+.mini .gm-map{height:150px}
+.mini .gm-row{padding:10px 14px}
+.mini .gm-row .nm{font-size:.92rem}
+.depo{display:flex;flex-direction:column;gap:26px;scroll-margin-top:24px}
+.print{width:100%;max-width:340px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.print figure{margin:0;border-radius:26px;overflow:hidden;border:6px solid var(--frame);box-shadow:0 18px 40px rgba(0,0,0,.18);background:#0b141a}
+.print img{display:block;width:100%;height:auto}
+.print figcaption{font-size:.82rem;color:var(--muted);text-align:center}
+.validado{display:flex;flex-direction:column;gap:12px;background:var(--accent-soft);border-radius:20px;padding:24px 20px;scroll-margin-top:24px}
+.validado .seal{display:flex;align-items:center;gap:10px;color:var(--accent);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.validado .seal svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2}
+.validado h3{font-size:1.45rem}
+.reveal{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.pre{transform:translateY(36px) scale(.97)}
+@media (prefers-reduced-motion: reduce){.reveal,.reveal.pre{transition:none;transform:none}}
+.sticky .btn{transition:background .3s, transform .3s}
+.sticky .btn.go{background:var(--accent);color:#fff;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+@media (prefers-reduced-motion: reduce){.sticky .btn.go{animation:none}}
+</style>
+<style>
+:root{--go:#1e8e3e;--go-ink:#ffffff;--go-soft:#e6f4ea;--glow:rgba(52,199,89,.45)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--go:#34c26a;--go-ink:#05210f;--go-soft:#10291a;--glow:rgba(52,199,89,.55)}}
+:root[data-theme="dark"]{--go:#34c26a;--go-ink:#05210f;--go-soft:#10291a;--glow:rgba(52,199,89,.55)}
+.sticky .btn.go{background:var(--go);color:var(--go-ink)}
+.validado{background:var(--go-soft)}
+.validado .seal{color:var(--go)}
+.print figure{border-color:var(--frame);box-shadow:0 0 0 1px var(--glow),0 0 22px 2px var(--glow),0 18px 40px rgba(0,0,0,.16);animation:glow 3.2s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 0 1px var(--glow),0 0 16px 0 var(--glow),0 18px 40px rgba(0,0,0,.16)}50%{box-shadow:0 0 0 1px var(--glow),0 0 30px 6px var(--glow),0 18px 40px rgba(0,0,0,.16)}}
+@media (prefers-reduced-motion: reduce){.print figure{animation:none}}
+.niches{display:flex;flex-direction:column;gap:14px}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.track{display:flex;gap:8px;width:max-content;animation:slide 38s linear infinite}
+.track.rev{animation-direction:reverse;animation-duration:44s}
+.chip{white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.88rem;font-weight:500;background:var(--surface)}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.track{animation:none;flex-wrap:wrap;width:auto}.marquee{-webkit-mask-image:none;mask-image:none}}
+.big{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:360px){.big{grid-template-columns:1fr}}
+.big div{border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px;background:var(--surface)}
+.big b{font-size:1.15rem;letter-spacing:-.02em;font-weight:600}
+.big span{font-size:.85rem;color:var(--muted)}
+.big .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--go)}
+.cmp{overflow-x:auto;border:1px solid var(--line);border-radius:16px}
+.cmp table{width:100%;border-collapse:collapse;font-size:.86rem;min-width:340px}
+.cmp th,.cmp td{padding:12px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp tr:last-child td{border-bottom:0}
+.cmp th{font-weight:600;font-size:.8rem;color:var(--muted)}
+.cmp th.me,.cmp td.me{background:var(--go-soft)}
+.cmp th.me{color:var(--go)}
+.cmp td:first-child{color:var(--muted);font-size:.8rem;width:28%}
+.guar{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:start;border:1px dashed var(--go);border-radius:16px;padding:16px}
+.guar svg{width:40px;height:40px;stroke:var(--go);fill:none;stroke-width:1.6}
+.guar b{display:block;font-weight:600}
+.guar span{font-size:.88rem;color:var(--muted)}
+</style>
+<style>
+.lockbtn{position:relative;overflow:hidden;isolation:isolate;justify-content:flex-start;gap:12px;background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.lockbtn .fill{position:absolute;inset:0;width:0;background:var(--go-soft);z-index:-1;transition:width .25s ease}
+.lockbtn .txt{flex:1;text-align:left;font-size:.95rem}
+.lockbtn .pct{font-family:var(--mono);font-size:.75rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.lock{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.lock rect{fill:currentColor;stroke:none}
+.lock .kh{fill:var(--soft);stroke:none}
+.lock .shackle{transform-origin:16.5px 11px;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.lockbtn.shake .lock{animation:shake .45s ease}
+@keyframes shake{20%{transform:rotate(-14deg)}40%{transform:rotate(12deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(5deg)}}
+.lockbtn.open{background:var(--go);color:var(--go-ink);border-color:var(--go);justify-content:center;animation:pulse2 1.3s ease-in-out infinite}
+.lockbtn.open .fill,.lockbtn.open .pct{display:none}
+.lockbtn.open .txt{flex:none;font-size:1rem;font-weight:600}
+.lockbtn.open .lock .shackle{transform:translateY(-3px) rotate(28deg)}
+.lockbtn.open .lock .kh{fill:var(--go)}
+.lockbtn.just .lock{animation:pop .6s ease}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.45)}100%{transform:scale(1)}}
+@keyframes pulse2{0%,100%{transform:scale(1);box-shadow:0 6px 20px rgba(0,0,0,.18),0 0 0 0 var(--glow)}50%{transform:scale(1.045);box-shadow:0 6px 20px rgba(0,0,0,.18),0 0 0 10px transparent}}
+@media (prefers-reduced-motion: reduce){.lockbtn.open,.lockbtn.shake .lock,.lockbtn.just .lock{animation:none}.lock .shackle{transition:none}}
+</style>
+<style>
+:root{--red:#d93025;--red-soft:#fce8e6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--red:#ff6b5e;--red-soft:#2d1513}}
+:root[data-theme="dark"]{--red:#ff6b5e;--red-soft:#2d1513}
+.res{gap:30px}
+.rhero{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.bignum{display:flex;align-items:baseline;gap:4px;line-height:.85;font-variant-numeric:tabular-nums}
+.bignum span{font-size:clamp(5.5rem,26vw,7.5rem);font-weight:700;letter-spacing:-.06em}
+.bignum small{font-size:1.4rem;color:var(--muted);font-weight:500}
+.bignum.bad span{color:var(--red);text-shadow:0 0 28px rgba(217,48,37,.28)}
+.bignum.warn span{color:var(--warn);text-shadow:0 0 28px rgba(176,96,0,.25)}
+.bignum.ok span{color:var(--go);text-shadow:0 0 28px var(--glow)}
+.lvl{font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.lvl.bad{color:var(--red)} .lvl.warn{color:var(--warn)} .lvl.ok{color:var(--go)}
+.rtitle{font-size:clamp(1.7rem,6.6vw,2.2rem);line-height:1.08}
+.rmap{transform-origin:top center;transition:transform .15s linear}
+.rmap .gm-map{overflow:hidden;transition:height .08s linear}
+.rmap .gm-map canvas{height:200px}
+.facs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.fac{border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.fn{font-size:.75rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis}
+.fv{font-size:1.6rem;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.fac.bad .fv{color:var(--red)} .fac.warn .fv{color:var(--warn)} .fac.ok .fv{color:var(--go)}
+.fb2{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.fb2 span{display:block;height:100%}
+.fac.bad .fb2 span{background:var(--red)} .fac.warn .fb2 span{background:var(--warn)} .fac.ok .fb2 span{background:var(--go)}
+.probs{background:var(--red-soft);border-radius:20px;padding:22px 18px;display:flex;flex-direction:column;gap:16px}
+.probhead{display:flex;align-items:center;gap:14px}
+.pcount{font-size:3.4rem;font-weight:700;letter-spacing:-.05em;line-height:.9;color:var(--red);font-variant-numeric:tabular-nums}
+.probhead h3{font-size:1.25rem}
+.probhead p{font-size:.88rem;color:var(--muted)}
+.probs ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.probs li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-size:1.02rem;line-height:1.35}
+.probs li::before{content:"✕";width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.7rem;font-weight:700;color:#fff;background:var(--red);margin-top:1px}
+.probs li.w::before{content:"!";background:var(--warn)}
+.probs b{font-weight:600}
+.urg{font-weight:600;font-size:1rem;border-top:1px solid color-mix(in srgb, var(--red) 25%, transparent);padding-top:14px}
+.offer2{position:relative;border-radius:24px;padding:28px 20px 22px;display:flex;flex-direction:column;gap:18px;background:var(--surface);
+  border:2px solid var(--go);box-shadow:0 0 0 1px var(--glow),0 0 34px 4px var(--glow);animation:glow2 3s ease-in-out infinite;scroll-margin-top:20px}
+@keyframes glow2{0%,100%{box-shadow:0 0 0 1px var(--glow),0 0 22px 2px var(--glow)}50%{box-shadow:0 0 0 1px var(--glow),0 0 44px 10px var(--glow)}}
+@media (prefers-reduced-motion: reduce){.offer2{animation:none}}
+.rec{position:absolute;top:-14px;left:20px;background:var(--go);color:var(--go-ink);font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px;box-shadow:0 0 18px var(--glow)}
+.pname{font-size:clamp(1.7rem,6.8vw,2.1rem)}
+.ponte{color:var(--muted);font-size:.98rem}
+.incl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.incl li{display:grid;grid-template-columns:24px 1fr;gap:10px;font-size:1rem;font-weight:500}
+.incl svg{width:22px;height:22px;stroke:var(--go);fill:none;stroke-width:2.6;margin-top:1px}
+.pricebox{display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px;padding:18px 0;border-block:1px solid var(--line)}
+.from{font-size:1.1rem;color:var(--muted)}
+.from s{color:var(--red);font-weight:700;font-size:1.5rem;text-decoration-thickness:3px;margin-left:4px}
+.to{display:flex;flex-direction:column;align-items:center;line-height:1}
+.to small{font-size:.95rem;color:var(--muted);margin-bottom:6px}
+.neon{font-size:clamp(3.6rem,17vw,4.6rem);font-weight:700;letter-spacing:-.05em;color:var(--go);text-shadow:0 0 18px var(--glow),0 0 42px var(--glow);font-variant-numeric:tabular-nums}
+.once{font-size:.82rem;color:var(--muted);margin-top:8px}
+.anchor2{font-size:.92rem;text-align:center;color:var(--muted)}
+.anchor2 b{color:var(--ink)}
+.btn.buy{background:var(--go);color:var(--go-ink);font-size:1.12rem;padding:20px 22px;box-shadow:0 0 24px var(--glow);animation:pulse2 1.4s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.btn.buy{animation:none}}
+</style>
+<style>
+.intro{gap:34px}
+.intro h1{font-size:clamp(2.5rem,10vw,3.3rem);letter-spacing:-.035em;line-height:1.02}
+.intro .hl{color:var(--go);text-shadow:0 0 18px var(--glow),0 0 40px var(--glow)}
+.intro .lead{font-size:1.08rem;color:var(--ink)}
+.intro h2{font-size:clamp(1.75rem,7vw,2.2rem)}
+.validado{border:2px solid var(--go);box-shadow:0 0 0 1px var(--glow),0 0 30px 3px var(--glow);animation:glow2 3s ease-in-out infinite;padding:28px 20px}
+.validado h3{font-size:clamp(1.55rem,6.4vw,1.9rem)}
+.validado p{font-size:1.02rem}
+.validado .seal{font-size:.78rem}
+@media (prefers-reduced-motion: reduce){.validado{animation:none}}
+.big div{padding:18px 16px}
+.big b{font-size:1.45rem;line-height:1.1}
+.big div:nth-child(1) b,.big div:nth-child(2) b{color:var(--go);text-shadow:0 0 16px var(--glow)}
+.cmp th.me{font-size:.9rem}
+.cmp td.me{font-weight:600;color:var(--ink)}
+.cmp th.me,.cmp td.me{box-shadow:inset 2px 0 0 var(--go)}
+.cmp td:nth-child(2),.cmp td:nth-child(3){color:var(--muted)}
+.guar{border:2px solid var(--go);border-style:solid;background:var(--go-soft)}
+.guar b{font-size:1.15rem}
+.chip{font-size:.92rem;padding:9px 15px}
+</style>
+<style>
+.vs{display:flex;flex-direction:column;gap:12px}
+.vs-them{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:340px){.vs-them{grid-template-columns:1fr}}
+.vs-card{border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:6px;background:var(--surface);min-width:0}
+.vs-name{font-size:.8rem;color:var(--muted);font-weight:500}
+.vs-card .vs-price{font-size:1.05rem;font-weight:600;color:var(--ink);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px}
+.vs ul{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.vs-card li{display:grid;grid-template-columns:16px 1fr;gap:8px;font-size:.84rem;color:var(--muted);line-height:1.3}
+.vs-card li::before{content:"✕";color:var(--red);font-weight:700;font-size:.8rem}
+.vs-x{align-self:center;font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:var(--bg)}
+.vs-me{border:2px solid var(--go);border-radius:20px;padding:22px 18px;background:var(--go-soft);display:flex;flex-direction:column;gap:8px;box-shadow:0 0 0 1px var(--glow),0 0 30px 3px var(--glow);animation:glow2 3s ease-in-out infinite}
+.vs-me .vs-name{color:var(--go);font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
+.vs-me .vs-price{font-size:1.6rem;font-weight:700;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
+.vs-me li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:1rem;font-weight:500}
+.vs-me li::before{content:"✓";width:20px;height:20px;border-radius:50%;background:var(--go);color:var(--go-ink);display:grid;place-items:center;font-size:.72rem;font-weight:700;margin-top:1px}
+@media (prefers-reduced-motion: reduce){.vs-me{animation:none}}
+.lockbtn .txt b{color:var(--go);font-weight:700;letter-spacing:.02em}
+.lockbtn.open .txt b{color:inherit}
+</style>
+<style>
+:root{--ease-out:cubic-bezier(.23,1,.32,1);--ease-io:cubic-bezier(.77,0,.175,1)}
+/* rótulos em texto normal, sem caixa-alta espaçada nem monoespaçada */
+.label,.lvl,.validado .seal,.rec,.steps,.youtag,.badge{font-family:var(--sans)!important;text-transform:none!important;letter-spacing:0!important}
+.lvl{font-size:.95rem;font-weight:600}
+.validado .seal{font-size:.95rem;font-weight:600}
+.rec{font-size:.82rem;font-weight:600}
+.topr{display:flex;align-items:center;gap:14px}
+.steptxt{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+/* superfícies do navegador */
+::selection{background:var(--go-soft);color:var(--ink)}
+html{accent-color:var(--go);caret-color:var(--go);scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+button:focus-visible,a:focus-visible,input:focus-visible{outline-color:var(--go)}
+/* resposta ao toque */
+.btn,.tile,.row,.bump,.restart,.back{-webkit-tap-highlight-color:transparent}
+.btn{transition:transform 160ms var(--ease-out),background-color .2s ease}
+.btn:active{transform:scale(.97)}
+.tile{transition:transform 160ms var(--ease-out),border-color .15s ease,background-color .15s ease}
+.tile:active{transform:scale(.96)}
+.row{transition:transform 160ms var(--ease-out),background-color .15s ease}
+.row:active{transform:scale(.985)}
+.tile:hover,.row:hover .dot{border-color:var(--line)}
+@media (hover:hover) and (pointer:fine){.tile:hover{border-color:var(--ink)}.row:hover .dot{border-color:var(--ink)}}
+.row.sel .dot{border-color:var(--go)}
+.tile.sel{border-color:var(--go);background:var(--go-soft)}
+.tile.sel svg{stroke:var(--go)}
+/* troca de tela do quiz: entra rápida com ease-out */
+.screen{animation:in 260ms var(--ease-out) both}
+@keyframes in{from{transform:translateY(10px)}to{transform:none}}
+/* revelação ao rolar com curva mais forte */
+.reveal{transition:transform 700ms var(--ease-out)}
+/* entrada escalonada no resultado */
+.probs li,.incl li{animation:rise 420ms var(--ease-out) both}
+.probs li:nth-child(1),.incl li:nth-child(1){animation-delay:60ms}
+.probs li:nth-child(2),.incl li:nth-child(2){animation-delay:120ms}
+.probs li:nth-child(3),.incl li:nth-child(3){animation-delay:180ms}
+.probs li:nth-child(4),.incl li:nth-child(4){animation-delay:240ms}
+.probs li:nth-child(5){animation-delay:300ms}.probs li:nth-child(6){animation-delay:360ms}.probs li:nth-child(n+7){animation-delay:420ms}
+@keyframes rise{from{transform:translateY(12px)}to{transform:none}}
+.bignum span{display:inline-block;animation:numIn 700ms var(--ease-out) both}
+@keyframes numIn{from{transform:translateY(14px) scale(.96)}to{transform:none}}
+@media (prefers-reduced-motion: reduce){.screen,.probs li,.incl li,.bignum span{animation:none}.btn:active,.tile:active,.row:active{transform:none}}
+/* ícones desenhados no lugar de caracteres */
+.probs li::before,.vs-card li::before,.vs-me li::before{content:""!important;-webkit-mask:var(--ic) center/62% no-repeat;mask:var(--ic) center/62% no-repeat}
+.probs li::before{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E");background:var(--red)!important;border-radius:50%}
+.probs li.w::before{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round'%3E%3Cpath d='M12 5v9M12 19v.5'/%3E%3C/svg%3E");background:var(--warn)!important}
+.vs-card li::before{display:block;--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E");background:var(--red);width:14px;height:14px;margin-top:2px;-webkit-mask-size:100%;mask-size:100%}
+.vs-me li::before{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5 10 17 19 7'/%3E%3C/svg%3E");background:var(--go)!important;border-radius:0;width:20px;height:20px;-webkit-mask-size:100%;mask-size:100%}
+/* texto corrido em tinta cheia */
+.intro .lead,.validado p,.ponte{color:var(--ink)}
+</style>
+<style>
+.altcard{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:-10px}
+.altname{font-weight:600}.altname span{color:var(--muted);font-weight:500}
+.alttxt{font-size:.88rem;color:var(--muted);margin-top:4px}
+.altbtn{white-space:nowrap;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;border-radius:999px;padding:10px 14px;font-weight:600;font-size:.9rem;transition:transform 160ms var(--ease-out)}
+.altbtn:active{transform:scale(.97)}
+@media (max-width:360px){.altcard{grid-template-columns:1fr}}
+</style>
+<style>
+/* ===== produtos: checks verdes e previas reais dos PDFs ===== */
+.incl svg,.ent svg{width:22px;height:22px;background:var(--go);stroke:#fff;fill:none;stroke-width:3;border-radius:7px;padding:3px;box-shadow:0 0 12px var(--glow);margin-top:0}
+.ent{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.ent li{display:grid;grid-template-columns:24px 1fr;gap:10px;font-size:.97rem;font-weight:500;line-height:1.35}
+.prods{display:flex;flex-direction:column;gap:22px}
+.prod{border:1.5px solid var(--line);border-radius:22px;padding:18px 16px;background:var(--surface);display:flex;flex-direction:column;gap:14px;min-width:0}
+.prod.hi{border-color:var(--go);box-shadow:0 0 0 1px var(--go),0 0 26px var(--glow)}
+.prod .ptop{display:flex;flex-direction:column;gap:4px}
+.ptag{align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--go);background:var(--go-soft);border-radius:999px;padding:4px 10px}
+.prod h3{font-size:1.45rem;letter-spacing:-.03em;margin:4px 0 0}
+.prod .pdesc{color:var(--muted);font-size:.95rem;margin:0}
+.pmeta{display:flex;flex-wrap:wrap;gap:6px}
+.pmeta span{font-size:.78rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 12px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;max-width:100%}
+.strip button{flex:0 0 auto;width:132px;border:0;padding:0;background:none;cursor:zoom-in;scroll-snap-align:start;border-radius:6px}
+.strip img{display:block;width:132px;height:auto;border-radius:6px;box-shadow:0 1px 2px rgba(0,0,0,.12),0 6px 18px rgba(0,0,0,.14);border:1px solid var(--line);background:#fff}
+.strip button:first-child img{box-shadow:0 0 0 2px var(--go),0 8px 22px var(--glow)}
+.swipe{font-size:.78rem;color:var(--muted);margin:-6px 0 0;text-align:right}
+.lbox{position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;padding:18px;cursor:zoom-out}
+.lbox img{max-width:min(560px,100%);max-height:92vh;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.5);background:#fff}
+.inpdf{border-top:1px solid var(--line);padding-top:14px}
+.inpdf summary{cursor:pointer;font-weight:650;font-size:.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.inpdf summary::-webkit-details-marker{display:none}
+.inpdf summary::after{content:"+";font-size:1.3rem;color:var(--go);font-weight:700}
+.inpdf[open] summary::after{content:"\2013"}
+.inpdf .ent{margin-top:14px}
+.bump{grid-template-columns:20px 54px 1fr auto}
+.bump .bthumb{width:54px;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.18);border:1px solid var(--line)}
+.bump ul{grid-column:1/-1;list-style:none;margin:2px 0 0;padding:12px 0 0;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:5px}
+.bump li{display:grid;grid-template-columns:18px 1fr;gap:8px;font-size:.86rem;color:var(--ink);font-weight:500}
+.bump li svg{width:16px;height:16px;background:var(--go);stroke:#fff;fill:none;stroke-width:3.2;border-radius:5px;padding:2px;margin-top:1px}
+
+.altcard{grid-template-columns:44px 1fr}.altcard .altbtn{grid-column:1/-1;text-align:center}
+.altcard .athumb{width:44px;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.16);border:1px solid var(--line)}
+
+</style>
+<style>
+.legal{margin-top:8px;border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:6px;font-size:.74rem;line-height:1.45;color:var(--muted);text-align:center}
+.legal p{margin:0}.legal a{color:inherit}
+.cookie{position:fixed;left:12px;right:12px;bottom:12px;z-index:120;max-width:520px;margin:0 auto;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.18);display:flex;flex-direction:column;gap:10px;font-size:.85rem}
+.cookie p{margin:0}.cookie div{display:flex;gap:8px;justify-content:flex-end}
+.cookie button{font:600 .85rem var(--sans);border-radius:999px;padding:9px 16px;border:1px solid var(--line);background:none;color:var(--ink);cursor:pointer}
+.cookie button.ok{background:var(--go);border-color:var(--go);color:var(--go-ink)}
+</style>
+<style>
+:root{--go-txt:#0d652d}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--go-txt:#5dd68a}}
+:root[data-theme="dark"]{--go-txt:#5dd68a}
+.ptag,.seal,.vs-me .vs-name{color:var(--go-txt)!important}
+</style>
+<style>.from.launch{display:inline-block;align-self:center;font:700 .74rem var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--go-txt);background:var(--go-soft);border-radius:999px;padding:6px 12px;margin-bottom:6px}</style>
+<style>.pbuy{background:var(--go);color:var(--go-ink);text-decoration:none;box-shadow:0 0 18px var(--glow);margin-top:4px}.pbuy svg{width:20px;height:20px}</style>
+<script>
+/* ==== CONFIGURAÇÃO: troque pelos seus links de checkout e preços ==== */
+const CONFIG = {
+  ofertas: {
+    essencial: { prod:"s", nome:"Google no Topo", preco:"47", link:"https://pay.cakto.com.br/pqj3jvn_1268618" },
+    completo:  { prod:"c", nome:"Dominando o Google", preco:"67", link:"https://pay.cakto.com.br/xj7ocuy_1268620" }
+  },
+  bump: { nome:"Kit de Crescimento Local", preco:"19", link:"https://pay.cakto.com.br/3aprc8a_1268621" },
+  /* DEPOIMENTOS: use apenas mensagens e prints REAIS de clientes, com autorização deles.
+     Enquanto a lista estiver vazia, a página mostra a validação baseada nas recomendações do Google.
+     Formato de conversa:
+       { nome:"Carlos", negocio:"Barbearia", cidade:"Bairro X", mensagens:[ {txt:"...", hora:"14:32"}, {txt:"...", hora:"14:33", eu:true} ] }
+     Formato de print (imagem): { img:"data:image/png;base64,...", alt:"Print de mensagem do cliente Carlos" } */
+  depoimentos: [],
+  /* IDENTIFICAÇÃO DO VENDEDOR: exigida pelo Decreto 7.962/2013 (comércio eletrônico) e pelas plataformas de anúncio.
+     Preencha antes de rodar anúncios. Links de privacidade e termos devem apontar para páginas reais. */
+  vendedor: { nome:"", cnpj:"", email:"", whatsapp:"", privacidade:"", termos:"" },
+  /* RASTREAMENTO (opcional). Só carrega depois que o visitante aceita os cookies (LGPD). */
+  rastreamento: { metaPixel:"", googleTag:"" }
+};
+
+const ICONS = {
+  barbearia:'<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/>',
+  saude:'<path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 12 0V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 12 0v-4"/><circle cx="20" cy="10" r="2"/>',
+  comida:'<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+  auto:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94Z"/>',
+  loja:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+  domicilio:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/>',
+  estetica:'<path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/>',
+  escritorio:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+  outro:'<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'
+};
+
+const TIPOS = [
+  {id:"barbearia", label:"Barbearia e salão", termo:"barbearia perto de mim", cat:"Barbearia", ex:["Navalha & Cia","Studio Hair Prime","Barbearia Central"]},
+  {id:"saude", label:"Clínica e consultório", termo:"psicólogo perto de mim", cat:"Psicólogo", ex:["Clínica Viver Bem","Dra. Ana Paula Reis","Espaço Equilíbrio"]},
+  {id:"comida", label:"Restaurante e delivery", termo:"pizzaria perto de mim", cat:"Pizzaria", ex:["Bella Massa","Forno a Lenha 24h","Cantina do Bairro"]},
+  {id:"auto", label:"Oficina e auto center", termo:"oficina mecânica perto de mim", cat:"Oficina mecânica", ex:["Auto Center Rota","Mecânica do Paulo","Motor Forte"]},
+  {id:"loja", label:"Loja e comércio", termo:"loja de calçados perto de mim", cat:"Loja de calçados", ex:["Passo Certo","Mega Store Centro","Loja da Esquina"]},
+  {id:"domicilio", label:"Serviços em domicílio", termo:"eletricista perto de mim", cat:"Eletricista", ex:["Elétrica Rápida 24h","JR Instalações","Eletricista Marcos"]},
+  {id:"estetica", label:"Estética e academia", termo:"academia perto de mim", cat:"Academia", ex:["Corpo Ativo","Studio Fit","Pilates Leve"]},
+  {id:"escritorio", label:"Escritório e consultoria", termo:"contador perto de mim", cat:"Contador", ex:["Contábil Confiança","Silva & Souza","Escritório Prime"]},
+  {id:"outro", label:"Outro negócio", termo:"[seu serviço] perto de mim", cat:"Empresa local", ex:["Concorrente A","Concorrente B","Concorrente C"]}
+];
+
+const FACTORS = {
+  rel:{nome:"Relevância", desc:"O quanto o seu perfil combina com o que o cliente digita"},
+  dest:{nome:"Destaque", desc:"Avaliações, fotos e atividade que mostram que o negócio é bom e está vivo"},
+  info:{nome:"Informações", desc:"Dados completos e corretos para o cliente chegar até você"}
+};
+
+const state = {};       // respostas
+let history = [];       // chaves das perguntas já respondidas
+const T = () => state.tipo || TIPOS[8];
+
+/* Cada pergunta: factor (opcional), why (você sabia), opts com pts, tom (x ruim, w atenção, v bom), fb e tip (o que fazer) */
+const Q = {
+  tipo: () => ({ title:"Qual é o seu negócio?", tiles:true,
+    opts: TIPOS.map(t=>({v:t.id, label:t.label})),
+    next: () => "presenca" }),
+
+  presenca: () => ({ factor:"info",
+    title:"Pesquise o nome da sua empresa no Google. O que aparece?",
+    why:"O quadro com mapa, telefone e horário é o Perfil da Empresa no Google, o antigo Google Meu Negócio. Ele é gratuito, e qualquer dono pode criar ou reivindicar o seu.",
+    opts:[
+      {v:"topo", label:"Aparece no topo, com mapa, telefone e horário", pts:10, tom:"v",
+        fb:"Ótimo. O seu perfil já funciona para quem conhece você pelo nome.", tip:"O desafio agora é aparecer para quem ainda não te conhece e busca pelo serviço. É isso que as próximas perguntas medem."},
+      {v:"meio", label:"Aparece, mas não no topo", small:"Só o site, o Instagram ou um perfil mais para baixo", pts:4, tom:"w",
+        fb:"Isso costuma indicar perfil incompleto, duplicado ou com um nome diferente do que as pessoas digitam.", tip:"Confira se o nome do perfil é exatamente o nome da fachada, sem palavras extras. Nome “enfeitado” pode até gerar suspensão."},
+      {v:"nao", label:"Não aparece", pts:0, tom:"x",
+        fb:"Sem perfil, o Google não tem o que mostrar. É a situação mais fácil de virar.", tip:"Criar o perfil é gratuito e leva menos de 30 minutos. A verificação vem em seguida e pode levar alguns dias."},
+      {v:"naosei", label:"Não sei", pts:0, tom:"w",
+        fb:"Vale fazer esse teste agora, pelo celular.", tip:"Use uma aba anônima: assim você vê o que um cliente novo vê, sem o histórico do seu celular."}
+    ],
+    next: v => (v==="topo"||v==="meio") ? "posicao" : "atende" }),
+
+  atende: () => ({
+    title:"Onde você atende os seus clientes?",
+    why:"O Google trata de um jeito quem tem porta aberta e de outro quem vai até o cliente. Os dois podem aparecer no mapa.",
+    opts:[
+      {v:"ponto", label:"No meu endereço", small:"Loja, consultório, oficina, salão", tom:"v",
+        fb:"Com endereço físico, você pode aparecer para todo mundo que busca perto de você.", tip:"Uma foto clara da fachada ajuda o cliente a te reconhecer na rua."},
+      {v:"casa", label:"Vou até o cliente", small:"Atendo bairros ou uma região", tom:"v",
+        fb:"Você pode aparecer no mapa sem mostrar o endereço da sua casa, cadastrando só a área de atendimento.", tip:"Liste os bairros ou cidades que você atende de verdade."},
+      {v:"misto", label:"Vendo online, mas também entrego ou atendo na minha cidade", small:"Delivery, retirada, visita ou consulta presencial", tom:"v",
+        fb:"Você pode ter perfil no Google cadastrando a sua área de atendimento."},
+      {v:"online", label:"100% online, sem nenhum contato presencial", small:"Envio pelos Correios ou produto digital", tom:"w",
+        fb:"O mapa do Google é feito para negócios que atendem numa região."}
+    ],
+    next: v => v==="online" ? "RESULT" : "concorrente" }),
+
+  concorrente: () => ({
+    title:`Pesquise “${T().termo}”. Quantas avaliações tem o primeiro colocado?`,
+    why:"O primeiro do mapa mostra o tamanho do desafio no seu bairro. O número de avaliações dele é uma boa meta inicial para você.",
+    opts:[
+      {v:"poucas", label:"Menos de 20", tom:"v", fb:"Concorrência fraca. Com um perfil bem feito e algumas avaliações, você entra na disputa rápido."},
+      {v:"medias", label:"Entre 20 e 100", tom:"w", fb:"Concorrência média. Dá para alcançar em alguns meses pedindo avaliação a cada cliente satisfeito."},
+      {v:"muitas", label:"Mais de 100", tom:"w", fb:"Concorrência forte. Com a categoria certa e o perfil completo, você aparece em buscas mais específicas enquanto acumula avaliações."},
+      {v:"naoolhei", label:"Não consigo olhar agora", tom:"w", fb:"Faça esse teste depois. Ele mostra quanto esforço o seu bairro exige."}
+    ],
+    next: () => "fotos" }),
+
+  posicao: () => ({ factor:"rel",
+    title:`Agora pesquise “${T().termo}”. Onde você aparece?`,
+    why:"O Google ordena o mapa por três fatores: relevância, distância e destaque. A distância você não controla. Os outros dois dependem do seu perfil.",
+    opts:[
+      {v:"top3", label:"Entre os 3 primeiros", pts:15, tom:"v", fb:"Você está entre os 3 que aparecem antes de qualquer clique. Agora é defender a posição."},
+      {v:"abaixo", label:"Apareço, mas depois dos 3 primeiros", pts:6, tom:"x",
+        fb:"Você existe, mas fica escondido. Pouca gente toca em “Mais lugares”.", tip:"Toque em “Mais lugares” e anote a sua posição. É o seu ponto de partida para medir a melhora."},
+      {v:"naoaparece", label:"Não apareço nessa busca", pts:0, tom:"x",
+        fb:"Se você não aparece buscando pelo próprio serviço, o Google não entendeu o que você faz. Quase sempre é a categoria.", tip:"A próxima pergunta é justamente sobre isso."},
+      {v:"naotestei", label:"Não consigo testar agora", pts:3, tom:"w",
+        fb:"Sem medir, não dá para saber se uma mudança funcionou.", tip:"Faça a busca pelo celular, estando perto do seu negócio."}
+    ],
+    next: () => "categoria" }),
+
+  categoria: () => ({ factor:"rel",
+    title:"Qual é a categoria principal do seu perfil?",
+    why:"A categoria principal diz ao Google o que o seu negócio é. “Salão de beleza” e “Barbearia”, por exemplo, aparecem para buscas diferentes.",
+    opts:[
+      {v:"exata", label:"A categoria exata do meu serviço", pts:15, tom:"v",
+        fb:"Perfeito. Esse é o ajuste que mais gente erra.", tip:"Use também as categorias secundárias para os outros serviços que você oferece."},
+      {v:"generica", label:"Uma categoria genérica", small:"Ex.: Empresa, Loja, Prestador de serviço", pts:4, tom:"x",
+        fb:"Categoria genérica faz o Google te mostrar em menos buscas. Trocar leva 2 minutos.", tip:`Comece a digitar “${T().cat}” no campo de categoria e escolha a opção mais específica que aparecer.`},
+      {v:"naosei", label:"Não sei qual está", pts:2, tom:"w",
+        fb:"Muita gente está com a categoria errada sem saber.", tip:"Pesquise o seu negócio no Google, toque em “Editar perfil” e confira “Categoria da empresa”."}
+    ],
+    next: () => "avaliacoes" }),
+
+  avaliacoes: () => ({ factor:"dest",
+    title:"Quantas avaliações o seu perfil tem?",
+    why:"O Google cita o número e a qualidade das avaliações como parte do destaque. Avaliações novas todo mês também mostram ao cliente que o negócio está ativo.",
+    opts:[
+      {v:"0", label:"Nenhuma", pts:0, tom:"x", fb:"Sem avaliações, o cliente não tem prova de que você é bom, e o Google também não.", tip:"Mande o link de avaliação pelo WhatsApp para 5 clientes satisfeitos ainda hoje."},
+      {v:"1-10", label:"De 1 a 10", pts:5, tom:"x", fb:"É um começo, mas o primeiro colocado costuma ter bem mais.", tip:"Peça a avaliação logo depois de um bom atendimento, quando o cliente ainda está satisfeito."},
+      {v:"11-50", label:"De 11 a 50", pts:10, tom:"w", fb:"Bom número. O que faz diferença agora é constância: avaliações novas todo mês.", tip:"Crie o hábito de pedir avaliação a todo cliente que elogiar o serviço."},
+      {v:"50+", label:"Mais de 50", pts:15, tom:"v", fb:"Excelente prova social. Agora é manter o ritmo e responder a todas."}
+    ],
+    next: v => v==="0" ? "fotos" : "nota" }),
+
+  nota: () => ({ factor:"dest",
+    title:"Qual é a sua nota média?",
+    why:"No Google Maps dá para filtrar a busca por nota, e a nota aparece ao lado do nome antes de qualquer outra informação.",
+    opts:[
+      {v:"45", label:"4,5 ou mais", pts:10, tom:"v", fb:"Nota excelente. Ela pesa muito na hora do cliente escolher entre os 3 do topo."},
+      {v:"40", label:"Entre 4,0 e 4,4", pts:7, tom:"w", fb:"Acima do filtro, mas uma ou duas avaliações ruins sem resposta podem pesar.", tip:"Responda às avaliações negativas mostrando o que foi resolvido. Quem lê presta atenção na resposta."},
+      {v:"39", label:"Abaixo de 4,0", pts:2, tom:"x", fb:"Abaixo de 4, você pode sumir para quem filtra por nota.", tip:"A saída é volume: muitas avaliações novas de clientes satisfeitos diluem as ruins."},
+      {v:"naosei", label:"Não sei", pts:3, tom:"w", fb:"A nota aparece logo abaixo do nome, no seu perfil.", tip:"Confira a nota e leia as 3 avaliações mais recentes. É o que o cliente lê primeiro."}
+    ],
+    next: () => "responde" }),
+
+  responde: () => ({ factor:"dest",
+    title:"Você responde às avaliações?",
+    why:"O próprio Google recomenda responder às avaliações. A resposta mostra ao cliente que tem alguém cuidando do negócio.",
+    opts:[
+      {v:"sempre", label:"Respondo todas", pts:10, tom:"v", fb:"Ótimo. Responder com o nome do serviço feito ajuda também a reforçar do que o seu negócio trata."},
+      {v:"asvezes", label:"Algumas", pts:5, tom:"w", fb:"Responder só às vezes passa a impressão de descuido.", tip:"Separe 10 minutos por semana para responder todas, inclusive as antigas."},
+      {v:"nunca", label:"Nunca respondi", pts:0, tom:"x", fb:"Avaliação sem resposta passa a imagem de negócio abandonado, principalmente as negativas.", tip:"Comece pelas negativas: agradeça, peça desculpas pelo que aconteceu e diga o que mudou."}
+    ],
+    next: () => "fotos" }),
+
+  fotos: () => ({ factor:"dest",
+    title: state.presenca==="topo"||state.presenca==="meio" ? "Quantas fotos o seu perfil tem?" : "Quantas fotos boas do seu negócio você tem hoje?",
+    why:"O Google recomenda fotos e vídeos para apresentar o negócio. A foto é a primeira coisa que o cliente vê, antes de ler qualquer texto.",
+    opts:[
+      {v:"30+", label:"Mais de 30", pts:10, tom:"v", fb:"Muito bom. Fotos recentes contam ainda mais.", tip:"Suba algumas fotos novas todo mês."},
+      {v:"10-30", label:"Entre 10 e 30", pts:6, tom:"w", fb:"Razoável. Faltam fotos de equipe, ambiente ou serviços prontos?", tip:"Suba algumas fotos novas todo mês. Fotos recentes contam mais."},
+      {v:"<10", label:"Menos de 10", pts:2, tom:"x", fb:"Poucas fotos fazem o perfil parecer abandonado.", tip:"Tire 10 fotos hoje: fachada, ambiente por dentro, equipe trabalhando e seus melhores serviços."},
+      {v:"0", label:"Só o logo ou nenhuma", pts:0, tom:"x", fb:"Sem fotos, o cliente não tem como imaginar o seu atendimento.", tip:"Tire 10 fotos hoje: fachada, ambiente por dentro, equipe trabalhando e seus melhores serviços."}
+    ],
+    next: () => (state.presenca==="topo"||state.presenca==="meio") ? "info" : "objetivo" }),
+
+  info: () => ({ factor:"info",
+    title:"Horário, telefone, WhatsApp e endereço estão completos e corretos?",
+    why:"Horário errado gera cliente na porta fechada e avaliação ruim. O Google também usa a precisão das informações para decidir quem mostrar.",
+    opts:[
+      {v:"tudo", label:"Sim, tudo certo", pts:10, tom:"v", fb:"Ótimo. Lembre de cadastrar o horário especial de feriados."},
+      {v:"parcial", label:"Alguma coisa está faltando ou desatualizada", pts:4, tom:"x", fb:"Cliente que encontra a porta fechada raramente volta, e às vezes deixa uma avaliação ruim.", tip:"Revise horário, telefone e link do WhatsApp, e já cadastre o horário especial dos feriados de fim de ano."},
+      {v:"naosei", label:"Não sei", pts:2, tom:"w", fb:"Vale conferir: às vezes o Google ou outras pessoas sugerem alterações no seu perfil.", tip:"Abra o perfil e confira horário, telefone e site como se fosse um cliente."}
+    ],
+    next: () => "servicos" }),
+
+  servicos: () => ({ factor:"rel",
+    title:"Você cadastrou uma descrição e a lista de serviços ou produtos no perfil?",
+    why:"Descrição, serviços e produtos ajudam o Google a entender para quais buscas você é relevante, além da categoria.",
+    opts:[
+      {v:"sim", label:"Sim, os dois completos", pts:10, tom:"v", fb:"Perfeito. Use as palavras que o cliente usa, não termos técnicos."},
+      {v:"parcial", label:"Só um deles ou incompleto", pts:5, tom:"w", fb:"Metade do caminho. Cada serviço cadastrado é mais uma chance de aparecer.", tip:"Cadastre cada serviço separadamente, com o nome que o cliente digitaria."},
+      {v:"nao", label:"Não, nunca mexi nisso", pts:0, tom:"x", fb:"Você está deixando o Google adivinhar o que você faz.", tip:"Escreva uma descrição de 3 linhas: o que você faz, para quem e em qual bairro, do jeito que o cliente falaria."},
+      {v:"naosabia", label:"Não sabia que dava", pts:0, tom:"x", fb:"A maioria dos donos não sabe. Por isso é uma vantagem fácil de conquistar.", tip:"Escreva uma descrição de 3 linhas: o que você faz, para quem e em qual bairro, do jeito que o cliente falaria."}
+    ],
+    next: () => "posts" }),
+
+  posts: () => ({ factor:"dest",
+    title:"Com que frequência você publica novidades, ofertas ou fotos no perfil?",
+    why:"Postagens ficam visíveis no seu perfil e mostram ao cliente, e ao Google, que o negócio está ativo.",
+    opts:[
+      {v:"semanal", label:"Toda semana", pts:10, tom:"v", fb:"Excelente. Poucos negócios mantêm essa constância."},
+      {v:"mensal", label:"Uma vez por mês ou menos", pts:5, tom:"w", fb:"Já é algo. Uma rotina semanal curta faz diferença.", tip:"Escolha um dia fixo da semana e publique uma foto com uma novidade ou oferta."},
+      {v:"nunca", label:"Nunca publiquei", pts:0, tom:"x", fb:"Você está deixando de usar um espaço gratuito de divulgação no próprio Google.", tip:"Publique hoje uma foto com a oferta da semana. Leva 5 minutos."}
+    ],
+    next: () => "objetivo" }),
+
+  objetivo: () => ({
+    title:"O que você mais quer agora?",
+    opts:[
+      {v:"ligacoes", label:"Mais ligações e mensagens no WhatsApp"},
+      {v:"visitas", label:"Mais clientes chegando até mim"},
+      {v:"confianca", label:"Passar mais confiança que o concorrente"}
+    ],
+    next: () => "RESULT" })
+};
+
+const PATH_PERFIL = ["tipo","presenca","posicao","categoria","avaliacoes","nota","responde","fotos","info","servicos","posts","objetivo"];
+const PATH_SEM = ["tipo","presenca","atende","concorrente","fotos","objetivo"];
+function totalSteps(){
+  if(state.presenca==="nao"||state.presenca==="naosei") return PATH_SEM.length;
+  return state.avaliacoes==="0" ? PATH_PERFIL.length-2 : PATH_PERFIL.length;
+}
+
+const sticky = document.getElementById("sticky"); const stepTxt = document.getElementById("stepTxt");
+document.getElementById("stickyBtn").onclick=()=>stickyClick();
+const view = document.getElementById("view"), bar = document.getElementById("bar"),
+      backBtn = document.getElementById("backBtn"), progressWrap = document.getElementById("progressWrap");
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+
+/* ---------- cartão estilo Google Maps ---------- */
+const STAR = f => `<svg viewBox="0 0 24 24"><path fill="${f}" d="M12 17.3 18.2 21l-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2 7.4 14l-1.6 7z"/></svg>`;
+function starsHTML(r){ let h=""; for(let i=1;i<=5;i++){ h+=STAR(r>=i-0.25?"#fbbc04":"#dadce0"); } return `<span class="stars">${h}</span>`; }
+const DIR = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.7 11.3 12.7 2.3a1 1 0 0 0-1.4 0l-9 9a1 1 0 0 0 0 1.4l9 9a1 1 0 0 0 1.4 0l9-9a1 1 0 0 0 0-1.4ZM14 14.5V12h-4v3H8v-4a1 1 0 0 1 1-1h5V7.5l3.5 3.5Z"/></svg>';
+
+function gmCard({termo, cat, places, you}){
+  const rows = places.map(p=>`
+    <div class="gm-row ${p.best?"best":""}">
+      <div style="min-width:0;display:flex;flex-direction:column;gap:3px">
+        <div class="nm"><span>${esc(p.name)}</span>${p.best?'<em class="badge" style="font-style:normal">Mais bem avaliado</em>':""}</div>
+        <div class="gm-meta"><span class="r">${p.r.toFixed(1).replace(".",",")}</span>${starsHTML(p.r)}<span>(${p.n})</span><span>· ${esc(cat)}</span></div>
+        <div class="gm-meta">${p.open?'<span class="open">Aberto</span><span>· Fecha às 20:00</span>':'<span class="closed">Fechado</span><span>· Abre às 9:00</span>'}</div>
+      </div>
+      <div class="gm-btn" aria-hidden="true">${DIR}</div>
+    </div>`).join("");
+  const youRow = you ? `<div class="gm-more">Mais lugares</div>
+    <div class="gm-row you"><div style="min-width:0;display:flex;flex-direction:column;gap:3px">
+      <div class="nm"><span>Sua empresa</span><em class="youtag" style="font-style:normal">${esc(you)}</em></div>
+      <div class="gm-meta">Quem busca dificilmente chega até aqui</div></div></div>` : "";
+  return `<div class="gm" aria-label="Exemplo de busca local no Google Maps">
+    <div class="gm-map"><canvas data-best="${places.findIndex(p=>p.best)}" data-names='${esc(JSON.stringify(places.map(p=>p.name)))}' data-r='${JSON.stringify(places.map(p=>p.r))}'></canvas>
+    <div class="gm-search"><svg viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>${esc(termo)}</span></div></div>
+    <div class="gm-list">${rows}${youRow}</div></div>`;
+}
+
+function drawMaps(){
+  document.querySelectorAll(".gm-map canvas").forEach(cv=>{
+    const rect = cv.getBoundingClientRect(); if(!rect.width) return;
+    const dpr = window.devicePixelRatio||1, w=rect.width, h=rect.height;
+    cv.width=w*dpr; cv.height=h*dpr;
+    const c=cv.getContext("2d"); c.scale(dpr,dpr);
+    c.fillStyle="#eef0f2"; c.fillRect(0,0,w,h);
+    c.fillStyle="#cdebd5"; c.beginPath(); c.roundRect ? c.roundRect(w*.62,h*.3,w*.2,h*.3,8) : c.rect(w*.62,h*.3,w*.2,h*.3); c.fill();
+    c.fillStyle="#aadaff"; c.beginPath(); c.moveTo(0,h*.9); c.bezierCurveTo(w*.25,h*.8,w*.45,h*1.02,w*.7,h*.92); c.lineTo(w*.7,h); c.lineTo(0,h); c.fill();
+    c.fillStyle="#e3e6e9";
+    for(let x=-10;x<w;x+=58){ for(let y=-6;y<h;y+=44){ if(x>w*.6&&x<w*.82&&y>h*.25&&y<h*.6) continue; c.fillRect(x+6,y+6,46,32); } }
+    c.strokeStyle="#ffffff"; c.lineWidth=5;
+    for(let x=-10;x<w;x+=58){ c.beginPath(); c.moveTo(x+3,0); c.lineTo(x+3,h); c.stroke(); }
+    for(let y=-6;y<h;y+=44){ c.beginPath(); c.moveTo(0,y+3); c.lineTo(w,y+3); c.stroke(); }
+    c.strokeStyle="#f9d36b"; c.lineWidth=7; c.beginPath(); c.moveTo(0,h*.72); c.lineTo(w,h*.48); c.stroke();
+    c.strokeStyle="#fde9a8"; c.lineWidth=3; c.beginPath(); c.moveTo(0,h*.72); c.lineTo(w,h*.48); c.stroke();
+    c.fillStyle="#8a8f96"; c.font="500 10px Roboto, Arial, sans-serif"; c.save(); c.translate(w*.06,h*.7); c.rotate(-Math.atan((h*.24)/w)); c.fillText("Av. Brasil",0,-6); c.restore();
+    c.fillStyle="#3c7a4f"; c.fillText("Praça",w*.66,h*.46);
+    const names = JSON.parse(cv.dataset.names||"[]"), best=+cv.dataset.best;
+    const pos=[[.3,.55],[.6,.8],[.86,.7],[.14,.86]];
+    names.forEach((n,i)=>{ if(i!==best) pin(c,w*pos[i][0],h*pos[i][1],false); });
+    if(best>=0){ const [px,py]=pos[best]; pin(c,w*px,h*py,true); chip(c,w*px,h*py,names[best],JSON.parse(cv.dataset.r)[best],w); }
+  });
+}
+function pin(c,x,y,big){
+  const s=big?1.35:1, r=8*s;
+  c.save(); c.shadowColor="rgba(0,0,0,.25)"; c.shadowBlur=4; c.shadowOffsetY=1;
+  c.fillStyle="#ea4335"; c.beginPath(); c.arc(x,y-r*1.6,r,Math.PI*0.85,Math.PI*0.15,false); c.lineTo(x,y); c.closePath(); c.fill(); c.restore();
+  c.fillStyle="#a50e0e"; c.beginPath(); c.arc(x,y-r*1.6,r*.38,0,Math.PI*2); c.fill();
+}
+function chip(c,x,y,name,r,w){
+  const nota=`${r.toFixed(1).replace(".",",")} ★`;
+  c.font="500 11px Roboto, Arial, sans-serif";
+  const tw=c.measureText(name+"  "+nota).width+16;
+  let bx=x+12; if(bx+tw>w-6) bx=x-12-tw; const by=y-34;
+  c.save(); c.shadowColor="rgba(0,0,0,.2)"; c.shadowBlur=6; c.fillStyle="#fff";
+  c.beginPath(); c.roundRect ? c.roundRect(bx,by,tw,22,11) : c.rect(bx,by,tw,22); c.fill(); c.restore();
+  c.textBaseline="middle"; c.fillStyle="#202124"; c.fillText(name,bx+8,by+11);
+  c.fillStyle="#e37400"; c.fillText(nota, bx+8+c.measureText(name+"  ").width, by+11);
+}
+
+
+function validacao(){
+  const D=CONFIG.depoimentos||[];
+  if(D.length){
+    const cards=D.map(d=>{
+      if(d.img) return `<div class="wa-img"><img src="${esc(d.img)}" alt="${esc(d.alt||"Print de mensagem de cliente")}"></div>`;
+      const ini=(d.nome||"?").trim().charAt(0).toUpperCase();
+      return `<div class="wa"><div class="wa-top"><div class="wa-av">${esc(ini)}</div><div><b>${esc(d.nome||"")}</b><span>${esc([d.negocio,d.cidade].filter(Boolean).join(" · "))}</span></div></div>
+        <div class="wa-body">${(d.mensagens||[]).map(m=>`<div class="wa-msg ${m.eu?"me":""}">${esc(m.txt)}<time>${esc(m.hora||"")}</time></div>`).join("")}</div></div>`;
+    }).join("");
+    return `<div class="head"><h3>Quem aplicou, conta o resultado</h3></div><div class="wa-wrap">${cards}</div>`;
+  }
+  return `<div class="head"><h3>O que o próprio Google diz sobre quem aparece primeiro</h3></div>
+    <div class="proof">
+      <div><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span><b>O mapa é ordenado por relevância, distância e destaque</b>Distância você não controla. Relevância e destaque dependem de como o seu perfil está configurado.</span></div>
+      <div><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg><span><b>Perfil completo aparece em mais buscas</b>O Google recomenda preencher categoria, horário, serviços e descrição para combinar com o que o cliente procura.</span></div>
+      <div><svg viewBox="0 0 24 24"><path d="M12 17.3 18.2 21l-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2 7.4 14l-1.6 7z"/></svg><span><b>Avaliações e respostas aumentam o destaque</b>O Google orienta pedir avaliações e responder a todas. É o que o diagnóstico mede.</span></div>
+    </div>
+    <p class="src">Base: Central de Ajuda do Perfil da Empresa no Google, “Dicas para melhorar sua classificação local no Google”.</p>`;
+}
+const NICHOS = ["Barbearias","Salões de beleza","Clínicas","Dentistas","Psicólogos","Fisioterapeutas","Restaurantes","Pizzarias","Hamburguerias","Padarias","Pet shops","Veterinários"];
+const NICHOS2 = ["Oficinas mecânicas","Auto centers","Lojas de roupas","Óticas","Academias","Estúdios de pilates","Eletricistas","Encanadores","Advogados","Contadores","Imobiliárias","Escolas e cursos"];
+const PRINTS = [{"img": "5b275aeade.jpg", "alt": "Print de conversa no WhatsApp com cliente: Barbearia", "w": 600, "h": 889, "cap": "Barbearia"}, {"img": "1209b54fb8.jpg", "alt": "Print de conversa no WhatsApp com cliente: Clínica odontológica", "w": 600, "h": 1088, "cap": "Clínica odontológica"}, {"img": "99a4e6bbf2.jpg", "alt": "Print de conversa no WhatsApp com cliente: Moda Prime", "w": 600, "h": 1088, "cap": "Loja de roupas"}];
+/* ---------- telas ---------- */
+function intro(){
+  stepTxt.hidden=true;
+  history=[]; for(const k in state) delete state[k];
+  backBtn.hidden=true; progressWrap.hidden=true; view.dataset.key="";
+  view.innerHTML = `<section class="screen intro">
+    <div class="head">
+      <h1>Seu negócio pronto para o topo do Google em <span class="hl">uma tarde</span>.</h1>
+      <p class="muted lead">Diagnóstico gratuito: em 3 minutos você descobre o que está tirando os clientes da sua empresa no mapa.</p>
+    </div>
+    <div class="mini">
+    ${gmCard({termo:"barbearia perto de mim", cat:"Barbearia", you:"não aparece", places:[
+      {name:"Navalha & Cia", r:4.9, n:212, open:true, best:true},
+      {name:"Studio Hair Prime", r:4.2, n:58, open:true},
+      {name:"Barbearia Central", r:3.4, n:17, open:false}]})}
+    <p class="src" style="margin-top:8px;text-align:center">Ilustração de uma busca local. Nomes fictícios.</p>
+    </div>
+    <div class="depo" id="depo">
+      <div class="head"><h2>O que os clientes estão dizendo</h2></div>
+      ${PRINTS.map(p=>`<div class="print reveal pre"><figure><img src="${p.img}" alt="${esc(p.alt)}" width="${p.w}" height="${p.h}" loading="lazy"></figure><figcaption>${esc(p.cap)}</figcaption></div>`).join("")}
+    </div>
+    <div class="validado reveal pre" id="validado">
+      <span class="seal"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Testado e validado</span>
+      <h3>Negócios reais já estão saindo na frente dos concorrentes</h3>
+      <p>Barbearias, clínicas e lojas estão colocando o método em prática, com menos de um dia de configuração. Agora é a vez do seu negócio.</p>
+    </div>
+
+    <div class="guar reveal pre"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+      <div><b>7 dias de garantia</b><span>Aplicou e não gostou? Você pede o dinheiro de volta dentro de 7 dias, sem precisar explicar.</span></div></div>
+    <div class="head"><h2>O canal de clientes mais barato que existe</h2></div>
+    <div class="big reveal pre">
+      <div><span class="k">Custo</span><b>Zero no Google</b><span>O perfil é gratuito. Você não paga por clique nem por anúncio.</span></div>
+      <div><span class="k">Tempo</span><b>Uma tarde</b><span>A configuração inteira cabe em menos de um dia, pelo celular.</span></div>
+      <div><span class="k">Duração</span><b>Resultado que fica</b><span>Anúncio para quando o dinheiro acaba. O perfil bem feito continua trabalhando.</span></div>
+      <div><span class="k">Cliente</span><b>Quem já quer comprar</b><span>Quem busca “perto de mim” está pronto para ligar ou ir até você.</span></div>
+    </div>
+    <div class="vs reveal pre">
+      <div class="vs-them">
+        <div class="vs-card"><p class="vs-name">Agência</p><p class="vs-price">Mensalidade todo mês</p>
+          <ul><li>Para quando você para de pagar</li><li>Outra pessoa controla</li></ul></div>
+        <div class="vs-card"><p class="vs-name">Anúncio pago</p><p class="vs-price">Todo mês, por clique</p>
+          <ul><li>Para quando a verba acaba</li><li>A plataforma controla</li></ul></div>
+      </div>
+      <div class="vs-x" aria-hidden="true">vs</div>
+      <div class="vs-me"><p class="vs-name">Você com o método</p><p class="vs-price">Pagamento único, bem menor</p>
+        <ul><li>Continua funcionando depois de pronto</li><li>Você no controle do seu perfil</li><li>Configurado em uma tarde, pelo celular</li></ul></div>
+    </div>
+    <div class="niches reveal pre">
+      <div class="head"><h2>Funciona para qualquer negócio que atende na sua cidade</h2>
+      <p class="muted">O Google usa as mesmas regras para todo mundo. Muda só a categoria e as palavras, e o diagnóstico já ajusta isso para o seu tipo de negócio.</p></div>
+      <div class="marquee"><div class="track">${NICHOS.concat(NICHOS).map(n=>`<span class="chip">${n}</span>`).join("")}</div></div>
+      <div class="marquee"><div class="track rev">${NICHOS2.concat(NICHOS2).map(n=>`<span class="chip">${n}</span>`).join("")}</div></div>
+    </div>
+    ${produtosIntro()}
+    ${validacao()}
+    <div class="fine"><span>Gratuito</span><span>Sem cadastro</span><span>Para qualquer negócio local</span></div>
+    ${rodape()}
+  </section>`;
+  sticky.hidden=false; document.body.classList.add("has-sticky"); initLock();
+  requestAnimationFrame(drawMaps);
+  watchIntro();
+  startAuto();
+}
+
+/* ---- botão travado com cadeado: libera ao chegar perto do fim da página ---- */
+let unlocked=false;
+function initLock(){
+  unlocked=false;
+  const b=document.getElementById("stickyBtn");
+  b.classList.remove("open","just","shake"); b.setAttribute("aria-disabled","true");
+  document.getElementById("lockTxt").innerHTML="Role a página para liberar sua avaliação <b>GRATUITA</b>";
+  updateLock();
+}
+function scrollProgress(){
+  const max=document.documentElement.scrollHeight-window.innerHeight;
+  return max>0 ? Math.min(1, window.scrollY/max) : 1;
+}
+function updateLock(){
+  if(sticky.hidden || unlocked) return;
+  const pr=scrollProgress(), goal=.9, pc=Math.min(100,Math.round(pr/goal*100));
+  document.getElementById("lockFill").style.width=pc+"%";
+  document.getElementById("lockPct").textContent=pc+"%";
+  if(pr>=goal) unlock();
+}
+function unlock(){
+  unlocked=true;
+  const b=document.getElementById("stickyBtn");
+  b.classList.add("open","just"); b.setAttribute("aria-disabled","false");
+  document.getElementById("lockTxt").innerHTML="Fazer minha avaliação <b>GRATUITA</b>";
+  setTimeout(()=>b.classList.remove("just"),700);
+}
+function stickyClick(){
+  const b=document.getElementById("stickyBtn");
+  if(unlocked){ stopAuto(); track("Lead",{content_name:"diagnostico"}); go("tipo"); return; }
+  b.classList.remove("shake"); void b.offsetWidth; b.classList.add("shake");
+  pauseAuto(1800);
+  window.scrollBy({top: Math.round(window.innerHeight*.8), behavior: RM?"auto":"smooth"});
+}
+window.addEventListener("scroll",()=>updateLock(),{passive:true});
+
+/* ---- revelar ao rolar e trocar o botão ---- */
+let io;
+function watchIntro(){
+  if(io) io.disconnect();
+  io = new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.remove("pre"); }
+  }),{threshold:.25});
+  view.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+}
+
+/* ---- rolagem automática lenta ---- */
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let autoOn=false, autoPausedUntil=0, autoRaf=0, autoAcc=0;
+function startAuto(){
+  stopAuto(); if(RM) return;
+  autoOn=true; autoPausedUntil=performance.now()+2200;
+  const step=t=>{ if(!autoOn) return;
+    if(t>autoPausedUntil){ autoAcc+=0.55; if(autoAcc>=1){ const d=Math.floor(autoAcc); autoAcc-=d; window.scrollBy(0,d); } 
+      if(window.innerHeight+window.scrollY >= document.documentElement.scrollHeight-2){ autoOn=false; return; } }
+    autoRaf=requestAnimationFrame(step); };
+  autoRaf=requestAnimationFrame(step);
+}
+function pauseAuto(ms){ autoPausedUntil=performance.now()+ms; }
+function stopAuto(){ autoOn=false; cancelAnimationFrame(autoRaf); }
+["wheel","touchstart","keydown","pointerdown"].forEach(ev=>window.addEventListener(ev,()=>{ if(autoOn) pauseAuto(4000); },{passive:true}));
+
+function go(key, push=true){
+  if(push && view.dataset.key) history.push(view.dataset.key);
+  if(key==="RESULT") return analyzing();
+  const q = Q[key]();
+  view.dataset.key = key;
+  sticky.hidden=true; document.body.classList.remove("has-sticky"); stopAuto();
+  backBtn.hidden=false; progressWrap.hidden=false;
+  const n = history.length+1, tot = Math.max(totalSteps(), n);
+  bar.style.width = Math.round((n/tot)*100)+"%";
+  stepTxt.textContent = n+" de "+tot; stepTxt.hidden=false;
+  const sel = key==="tipo" ? state.tipo?.id : state[key];
+  const body = q.tiles
+    ? `<div class="tiles">${q.opts.map(o=>`<button class="tile opt ${sel===o.v?"sel":""}" type="button" data-v="${o.v}"><span class="ic"><svg viewBox="0 0 24 24">${ICONS[o.v]}</svg></span>${esc(o.label)}</button>`).join("")}</div>`
+    : `<div class="list">${q.opts.map(o=>`<button class="row opt ${sel===o.v?"sel":""}" type="button" data-v="${o.v}"><span>${esc(o.label)}${o.small?`<small>${esc(o.small)}</small>`:""}</span><span class="dot"></span></button>`).join("")}</div>`;
+  view.innerHTML = `<section class="screen">
+    <div class="head">
+      <h2>${esc(q.title)}</h2>
+    </div>
+    ${body}
+    <div id="fbSlot"></div>
+  </section>`;
+  view.querySelectorAll(".opt").forEach(b=>b.onclick=()=>choose(key,q,b));
+  window.scrollTo({top:0});
+}
+
+function choose(key,q,b){
+  view.querySelectorAll(".opt").forEach(x=>x.classList.remove("sel")); b.classList.add("sel");
+  const v=b.dataset.v;
+  if(key==="tipo"){ state.tipo=TIPOS.find(t=>t.id===v); setTimeout(()=>go(q.next(v)),180); return; }
+  state[key]=v;
+  setTimeout(()=>go(q.next(v)),220);
+}
+
+function showFb(key,q,o){
+  const slot=document.getElementById("fbSlot");
+  slot.innerHTML = `<div style="display:flex;flex-direction:column;gap:14px">
+    <div class="fb ${o.tom||"v"}"><i></i><div><p>${esc(o.fb)}</p>${o.tip?`<p class="tip"><b>Faça hoje:</b> ${esc(o.tip)}</p>`:""}</div></div>
+    <button class="btn" type="button" id="nextBtn">Continuar</button></div>`;
+  document.getElementById("nextBtn").onclick=()=>go(q.next(state[key]));
+  slot.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth", block:"nearest"});
+}
+
+backBtn.onclick=()=>{ const prev=history.pop(); view.dataset.key=""; if(!prev) return intro(); go(prev,false); };
+
+function analyzing(){
+  stepTxt.hidden=true;
+  sticky.hidden=true; document.body.classList.remove("has-sticky"); stopAuto();
+  backBtn.hidden=true; bar.style.width="100%"; view.dataset.key="";
+  view.innerHTML = `<section class="screen analyzing">
+    <div class="spin" aria-hidden="true"></div>
+    <h2>Montando seu diagnóstico</h2>
+    <div class="steps"><span>${esc(T().label)}</span><span>busca: “${esc(T().termo)}”</span><span>relevância · destaque · informações</span></div>
+  </section>`;
+  setTimeout(result, 1600);
+}
+
+/* ---------- pontuação ---------- */
+function answered(){ return [...history, "objetivo"].filter((k,i,a)=>a.indexOf(k)===i && state[k]!==undefined && Q[k]); }
+function factorScores(){
+  const f={rel:[0,0],dest:[0,0],info:[0,0]};
+  answered().forEach(k=>{ const q=Q[k](); if(!q.factor) return;
+    const max=Math.max(...q.opts.map(o=>o.pts||0)); const o=q.opts.find(o=>o.v===state[k]);
+    f[q.factor][0]+= (o&&o.pts)||0; f[q.factor][1]+=max; });
+  if(state.avaliacoes==="0"){ f.dest[1]+=20; } // nota e respostas contam como zero
+  return f;
+}
+function totalScore(f){
+  let a=0,b=0; for(const k in f){a+=f[k][0];b+=f[k][1];}
+  return b? Math.round(a/b*100) : 0;
+}
+function wins(){
+  const L=[];
+  answered().forEach(k=>{ const q=Q[k](); const o=q.opts.find(o=>o.v===state[k]); if(o&&o.tip&&(o.tom==="x"||o.tom==="w")) L.push({tom:o.tom, k, tip:o.tip, fator:q.factor}); });
+  L.sort((a,b)=>(a.tom==="x"?0:1)-(b.tom==="x"?0:1));
+  const seen=new Set(); return L.filter(w=>{ if(seen.has(w.tip)) return false; seen.add(w.tip); return true; }).slice(0,3);
+}
+const WIN_TITLE = {presenca:"Corrija o nome do perfil", posicao:"Meça a sua posição", categoria:"Ajuste a categoria principal", avaliacoes:"Peça avaliações", nota:"Cuide da nota", responde:"Responda às avaliações", fotos:"Suba fotos novas", info:"Revise as informações", servicos:"Escreva a descrição", posts:"Publique uma novidade", atende:"Defina onde você atende", concorrente:"Descubra a sua meta"};
+
+function profile(){
+  if(history.includes("atende") && state.atende==="online") return "online";
+  if(state.presenca==="nao"||state.presenca==="naosei") return "invisivel";
+  if(state.posicao==="top3") return "topo";
+  return "escondido";
+}
+
+const CHECK = '<svg viewBox="0 0 24 24"><path d="M5 12.5 10 17 19 7"/></svg>';
+const PREV = {"c": ["7d3a7671f7.jpg", "aa17618d0b.jpg", "f6973993d4.jpg", "7a11168c81.jpg", "fb7a631876.jpg"], "s": ["c322b00094.jpg", "0d74fd9005.jpg", "14dfd2f730.jpg", "bfe6535768.jpg", "67406d386b.jpg"], "k": ["d14d7d8519.jpg", "354125c25f.jpg", "b950a674c6.jpg", "40e17e4c21.jpg", "fa5556c655.jpg"]};
+
+const PRODS = {
+  s:{ nome:"Google no Topo", tag:"Guia prático", desc:"O passo a passo para quem não entende de tecnologia: do cadastro às avaliações, tela por tela.",
+      meta:["25 páginas","10 passos","Telas reais do Google"],
+      entrega:["Cadastro e verificação passo a passo, com o que mostrar no vídeo","Cada campo do perfil preenchido do jeito certo, com modelo de descrição","O método dos 3 concorrentes para acertar a categoria","A lista de fotos que vendem e as exigências do Google","Como pedir avaliações sem quebrar as regras, com mensagem pronta","Como aparecer nas buscas da sua cidade","Os 13 erros que mais derrubam perfis","Checklist final e plano da primeira semana"] },
+  c:{ nome:"Dominando o Google", tag:"Guia completo", desc:"Tudo sobre aparecer no Google, do mapa ao site. Cada dica marcada: regra do Google, boa prática ou mito.",
+      meta:["66 páginas","10 módulos","22 telas reais","21 fontes oficiais"],
+      entrega:["Como o Google decide quem aparece no mapa e na busca","Perfil da Empresa completo: verificação, categorias, fotos e postagens","Avaliações: pedir, responder e lidar com avaliações falsas","Pesquisa de palavras-chave com ferramentas gratuitas do Google","Site otimizado: título, páginas de serviço, dados estruturados e velocidade","Search Console, Analytics, Trends e PageSpeed com telas reais","Busca com IA e o que o Google proíbe","Diagnóstico de problemas e plano de 30, 60 e 90 dias"] },
+  k:{ nome:"Kit de Crescimento Local", tag:"Kit de execução", desc:"Para abrir todo dia e saber exatamente o que fazer, com modelos prontos para copiar.",
+      meta:["20 páginas","11 ferramentas","Para imprimir"],
+      entrega:["Calendário de 30 dias: uma ação por dia","8 mensagens prontas para pedir avaliações","18 respostas para avaliações boas e ruins","52 ideias de postagens, um ano inteiro","Palavras-chave locais de 12 tipos de negócio","Planilhas de concorrentes, manutenção mensal e indicadores"] }
+};
+const PAGES_ALT = {s:["Capa","Por que aparecer","Cadastro passo a passo","Avaliações","Checklist final"],
+  c:["Capa","Espaços da busca","Avaliações","Dados estruturados","Plano 30/60/90"],
+  k:["Capa","Calendário de 30 dias","Respostas prontas","52 ideias de postagens","Checklist do perfil"]};
+
+/* ---------- rodapé legal, rastreamento com consentimento e UTMs ---------- */
+function safeUrl(u){ try{ const x=new URL(u, location.href); return /^https?:$/.test(x.protocol) ? x.toString() : ""; }catch(e){ return ""; } }
+function rodape(){
+  const v=CONFIG.vendedor||{};
+  const links=[v.privacidade&&safeUrl(v.privacidade)?`<a href="${esc(safeUrl(v.privacidade))}" target="_blank" rel="noopener">Política de privacidade</a>`:"",
+    v.termos&&safeUrl(v.termos)?`<a href="${esc(safeUrl(v.termos))}" target="_blank" rel="noopener">Termos de uso</a>`:"",
+    v.email?`<a href="mailto:${esc(v.email)}">${esc(v.email)}</a>`:""].filter(Boolean).join(" · ");
+  return `<footer class="legal">
+    ${v.nome?`<p><b>${esc(v.nome)}</b>${v.cnpj?` · CNPJ ${esc(v.cnpj)}`:""}</p>`:""}
+    ${links?`<p>${links}</p>`:""}
+    <p>Material educativo independente, sem vínculo com o Google. Google e Perfil da Empresa no Google são marcas do Google LLC. O mapa desta página é uma ilustração.</p>
+    <p>Os resultados dependem da aplicação, da concorrência e da localização de quem pesquisa. Nenhuma posição é garantida.</p>
+  </footer>`;
+}
+const UTM_KEYS=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid","gclid","src","sck"];
+function withUtm(link){
+  const s=safeUrl(link); if(!s) return "";
+  try{ const u=new URL(s), here=new URLSearchParams(location.search);
+    UTM_KEYS.forEach(k=>{ if(here.get(k) && !u.searchParams.has(k)) u.searchParams.set(k, here.get(k)); });
+    return u.toString(); }catch(e){ return s; }
+}
+function track(ev, params){
+  try{ if(window.fbq) fbq("track", ev, params||{}); }catch(e){}
+  try{ if(window.gtag) gtag("event", ev, params||{}); }catch(e){}
+}
+function loadTrackers(){
+  const r=CONFIG.rastreamento||{};
+  if(r.metaPixel && /^\d{6,20}$/.test(r.metaPixel)){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", r.metaPixel); fbq("track","PageView");
+  }
+  if(r.googleTag && /^(G|AW)-[A-Z0-9]+$/.test(r.googleTag)){
+    const s=document.createElement("script"); s.async=true; s.src="https://www.googletagmanager.com/gtag/js?id="+r.googleTag; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[]; window.gtag=function(){dataLayer.push(arguments);}; gtag("js",new Date()); gtag("config", r.googleTag);
+  }
+}
+function consent(){
+  const r=CONFIG.rastreamento||{}; if(!r.metaPixel && !r.googleTag) return;
+  let c=null; try{ c=localStorage.getItem("tdm_consent"); }catch(e){}
+  if(c==="sim") return loadTrackers(); if(c==="nao") return;
+  const d=document.createElement("div"); d.className="cookie"; d.setAttribute("role","dialog"); d.setAttribute("aria-label","Aviso de cookies");
+  d.innerHTML=`<p>Usamos cookies para medir o desempenho dos nossos anúncios.${CONFIG.vendedor&&safeUrl(CONFIG.vendedor.privacidade||"")?` <a href="${esc(safeUrl(CONFIG.vendedor.privacidade))}" target="_blank" rel="noopener">Saiba mais</a>`:""}</p><div><button type="button" data-c="nao">Recusar</button><button type="button" data-c="sim" class="ok">Aceitar</button></div>`;
+  d.querySelectorAll("button").forEach(b=>b.onclick=()=>{ try{ localStorage.setItem("tdm_consent", b.dataset.c); }catch(e){} d.remove(); if(b.dataset.c==="sim") loadTrackers(); });
+  document.body.appendChild(d);
+}
+function stripHTML(k){
+  return `<div class="strip">${PREV[k].map((src,i)=>`<button type="button" class="pv" aria-label="Ampliar página: ${PAGES_ALT[k][i]}"><img src="${src}" alt="${esc(PRODS[k].nome)}: ${PAGES_ALT[k][i]}" width="132" height="187"></button>`).join("")}</div><p class="swipe">Deslize para ver por dentro →</p>`;
+}
+function entList(list){ return `<ul class="ent">${list.map(i=>`<li>${CHECK}<span>${esc(i)}</span></li>`).join("")}</ul>`; }
+function buyBtn(k){
+  const o = k==="s"?CONFIG.ofertas.essencial : k==="c"?CONFIG.ofertas.completo : CONFIG.bump;
+  const u = withUtm(o.link);
+  if(!u) return "";
+  return `<a class="btn pbuy" href="${esc(u)}" target="_blank" rel="noopener" data-n="${esc(o.nome)}" data-v="${o.preco}">Comprar por R$ ${o.preco} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>`;
+}
+document.addEventListener("click",e=>{ const q=e.target.closest(".quizcta"); if(q){ window.scrollTo({top:document.documentElement.scrollHeight,behavior:"smooth"}); setTimeout(()=>{ if(typeof unlocked!=="undefined"&&unlocked){ stopAuto(); go("tipo"); } },900); return; } const a=e.target.closest(".pbuy"); if(a) track("InitiateCheckout",{content_name:a.dataset.n,value:+a.dataset.v,currency:"BRL"}); });
+function prodCard(k, hi){
+  const p=PRODS[k];
+  return `<div class="prod reveal pre${hi?" hi":""}"><div class="ptop"><span class="ptag">${p.tag}</span><h3>${p.nome}</h3><p class="pdesc">${p.desc}</p></div>
+    <div class="pmeta">${p.meta.map(m=>`<span>${m}</span>`).join("")}</div>
+    ${stripHTML(k)}${entList(p.entrega)}<button type="button" class="btn pbuy quizcta">Responda o quiz gratuito para ver o seu</button></div>`;
+}
+function produtosIntro(){
+  return `<div class="head"><h2>O que você recebe</h2><p class="muted">Materiais em PDF, com telas reais do Google capturadas em 2026. No fim do diagnóstico, você vê qual é o certo para o seu momento.</p></div>
+  <div class="prods">${prodCard("s")}${prodCard("c",true)}${prodCard("k")}</div>`;
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".pv"); if(!b) return;
+  const img=b.querySelector("img"); const o=document.createElement("div"); o.className="lbox"; o.setAttribute("role","dialog");
+  o.innerHTML=`<img src="${img.src}" alt="${esc(img.alt)}">`; o.onclick=()=>o.remove();
+  const k=ev=>{ if(ev.key==="Escape"){ o.remove(); document.removeEventListener("keydown",k);} };
+  document.addEventListener("keydown",k);
+  document.body.appendChild(o);
+});
+const PROB = {
+  presenca:"Seu perfil é difícil de achar até pelo nome",
+  posicao:"Você está fora dos 3 primeiros do mapa",
+  categoria:"A categoria do perfil está escondendo você",
+  avaliacoes:"Poucas avaliações para competir com o primeiro colocado",
+  nota:"Sua nota afasta parte dos clientes",
+  responde:"Avaliações sem resposta passam imagem de descuido",
+  fotos:"Poucas fotos: o cliente não consegue imaginar o seu atendimento",
+  info:"Informações incompletas fazem o cliente desistir",
+  servicos:"O Google não sabe direito o que você vende",
+  posts:"Perfil parado, sem novidades",
+  concorrente:"Seus concorrentes já estão na frente",
+  atende:"Área de atendimento não definida"
+};
+function problems(p){
+  const L=[];
+  if(p==="invisivel") L.push({t:"Sem perfil no Google: você não aparece em nenhuma busca do mapa", d:`Quem procura “${T().termo}” só encontra os concorrentes.`, sev:"x"});
+  answered().forEach(k=>{ const q=Q[k](); const o=q.opts.find(o=>o.v===state[k]);
+    if(o && (o.tom==="x"||o.tom==="w") && PROB[k] && k!=="atende") L.push({t:PROB[k], d:o.fb, sev:o.tom}); });
+  L.sort((a,b)=>(a.sev==="x"?0:1)-(b.sev==="x"?0:1));
+  return L;
+}
+
+function offerHTML(o, itens, ponte, cta){
+  return `<div class="offer2" id="offer">
+    <span class="rec">Recomendado para você</span>
+    <h2 class="pname">${esc(o.nome)}</h2>
+    <p class="ponte">${esc(ponte)}</p>
+    <div class="pmeta">${PRODS[o.prod].meta.map(m=>`<span>${m}</span>`).join("")}</div>
+    ${stripHTML(o.prod)}
+    <ul class="incl">${itens.map(i=>`<li>${CHECK}<span>${esc(i)}</span></li>`).join("")}</ul>
+    <details class="inpdf"><summary>Tudo o que vem no ${esc(o.nome)}</summary>${entList(PRODS[o.prod].entrega)}</details>
+    <div class="pricebox">
+      <p class="from launch">Preço de lançamento</p>
+      <p class="to"><span class="neon">R$ ${o.preco}</span></p>
+      <p class="once">pagamento único · acesso imediato</p>
+    </div>
+    <p class="anchor2">Agências cobram <b>mensalidade</b> para fazer o mesmo por você.</p>
+    <label class="bump" for="bumpChk"><input type="checkbox" id="bumpChk"><img class="bthumb" src="${PREV.k[0]}" alt="Capa do Kit de Crescimento Local"><span><b>Adicione o ${esc(CONFIG.bump.nome)}</b>Para abrir todo dia e saber o que fazer.</span><em>+ R$ ${CONFIG.bump.preco}</em><ul>${PRODS.k.entrega.map(i=>`<li>${CHECK}<span>${esc(i)}</span></li>`).join("")}</ul></label>
+    <a class="btn buy" id="buyBtn" href="${withUtm(o.link)?esc(withUtm(o.link)):"#"}" target="_blank" rel="noopener">${esc(cta)} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="note" id="noLink">7 dias de garantia · se não gostar, devolvemos seu dinheiro</p>
+  </div>`;
+}
+
+function result(){
+  const p=profile(), t=T();
+  view.dataset.key="RESULT";
+  backBtn.hidden=true; progressWrap.hidden=true;
+  if(p==="online"){
+    history=[];
+    view.innerHTML=`<section class="screen res">
+      <div class="rhero">
+        <h2 class="rtitle">Para negócio 100% online, o mapa do Google não é o caminho</h2>
+        <p class="muted lead">O Google só permite o Perfil da Empresa para quem tem contato presencial com o cliente, no seu endereço ou indo até ele. Um perfil criado fora dessa regra pode ser suspenso, e as avaliações vão junto.</p></div>
+      <div class="validado" style="animation:none"><span class="seal"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Confira antes de sair</span>
+        <h3>Você faz entregas, atende em casa ou tem ponto de retirada?</h3>
+        <p>Então o seu negócio pode, sim, aparecer no mapa. Refaça o diagnóstico e marque essa opção.</p></div>
+      <button class="btn buy" type="button" id="again">Refazer o diagnóstico</button>${rodape()}</section>`;
+    document.getElementById("again").onclick=()=>{ intro(); };
+    return;
+  }
+  const f = factorScores();
+  const s = p==="invisivel" ? (["casa","misto"].includes(state.atende)?12:8) : totalScore(f);
+  const lvl = s<35?"bad":s<70?"warn":"ok";
+  const nivel = s<35?"Baixa":s<70?"Média":"Alta";
+  const P = problems(p);
+  const comp=[{name:t.ex[0], r:4.9, n:212, open:true, best:true},{name:t.ex[1], r:4.2, n:58, open:true},{name:t.ex[2], r:3.6, n:21, open:false}];
+  let titulo, places, you, oferta, itens, ponte, cta, alt, altTxt;
+  if(p==="invisivel"){
+    titulo="Hoje, quem procura você no Google encontra o concorrente";
+    places=comp; you="sem perfil"; oferta=CONFIG.ofertas.essencial; alt=CONFIG.ofertas.completo; altTxt="Quer ir além do perfil? O guia completo inclui site, Search Console, busca com IA e plano de 90 dias."; cta="Quero aparecer no mapa";
+    ponte="O passo a passo, com telas reais do Google, para deixar o seu perfil pronto em uma tarde, sem errar na verificação nem na categoria.";
+    itens=["Passo a passo para criar ou reivindicar e verificar o perfil",
+      ["casa","misto"].includes(state.atende)?"Como aparecer no mapa sem expor o endereço de casa":`A categoria certa para ${t.label.toLowerCase()}`,
+      "Como pedir avaliações sem violar as regras do Google","Modelos de descrição e checklist final de otimização"];
+  } else if(p==="escondido"){
+    titulo="Seus clientes estão indo para os 3 primeiros do mapa";
+    places=comp; you= state.posicao==="abaixo"?"depois dos 3 primeiros":state.posicao==="naoaparece"?"não aparece":"posição desconhecida"; oferta=CONFIG.ofertas.completo; alt=CONFIG.ofertas.essencial; altTxt="Só precisa deixar o perfil completo e verificado? O guia prático resolve em 10 passos."; cta="Quero ser top 1 no mapa";
+    ponte="O guia completo para corrigir cada problema encontrado, na ordem certa, com base no que o Google documenta.";
+    itens=["Raio-x do seu perfil e dos 3 primeiros do mapa","Categorias, serviços e descrição para "+t.label.toLowerCase(),
+      "Avaliações: como pedir, responder e o que o Google proíbe","Site, Search Console e ferramentas gratuitas, com telas reais","Plano de execução de 30, 60 e 90 dias"];
+  } else {
+    titulo="Você está no topo. Agora é não deixar ninguém passar";
+    places=[{name:"Sua empresa", r:4.8, n:96, open:true, best:true},{name:t.ex[1], r:4.2, n:58, open:true},{name:t.ex[2], r:3.6, n:21, open:false}];
+    you=null; oferta=CONFIG.ofertas.completo; alt=CONFIG.ofertas.essencial; altTxt="Só quer revisar o básico do perfil? O guia prático resolve em 10 passos."; cta="Quero continuar no topo";
+    ponte="O guia completo para manter a sua posição enquanto os concorrentes tentam subir.";
+    itens=["Como monitorar concorrentes e os números do Desempenho","Avaliações: responder bem e lidar com avaliações falsas","SEO do site e busca com IA para ir além do mapa","Diagnóstico: o problema, a causa provável e o que fazer"];
+  }
+  const nx=P.filter(x=>x.sev==="x").length;
+  const fac = p==="invisivel" ? "" : `<div class="facs">${Object.keys(FACTORS).map(k=>{ const [a,b]=f[k]; const pc=b?Math.round(a/b*100):0; const c=pc<35?"bad":pc<70?"warn":"ok";
+      return `<div class="fac ${c}"><span class="fn">${FACTORS[k].nome}</span><span class="fv">${pc}%</span><div class="fb2"><span style="width:${pc}%"></span></div></div>`; }).join("")}</div>`;
+  history=[];
+  view.innerHTML=`<section class="screen res">
+    <div class="rhero">
+      <div class="bignum ${lvl}"><span>${s}</span><small>/100</small></div>
+      <p class="lvl ${lvl}">Visibilidade ${nivel.toLowerCase()} no Google · ${esc(t.label)}</p>
+      <h2 class="rtitle">${esc(titulo)}</h2>
+    </div>
+    <div class="rmap" id="rmap">${gmCard({termo:t.termo, cat:t.cat, places, you})}</div>
+    ${fac}
+    ${P.length?`<div class="probs">
+      <div class="probhead"><span class="pcount">${P.length}</span><div><h3>${P.length===1?"problema encontrado":"problemas encontrados"}</h3><p>${nx?`${nx} ${nx===1?"deles está":"deles estão"} custando clientes agora`:"pontos que deixam você atrás do concorrente"}</p></div></div>
+      <ul>${P.map(x=>`<li class="${x.sev}"><b>${esc(x.t)}</b></li>`).join("")}</ul>
+      <p class="urg">Enquanto isso, o primeiro do mapa recebe as ligações que poderiam ser suas.</p>
+    </div>`:""}
+    ${offerHTML(oferta, itens, ponte, cta)}
+    <div class="altcard"><img class="athumb" src="${PREV[alt.prod][0]}" alt="Capa do ${esc(alt.nome)}"><div><p class="altname">${esc(alt.nome)} <span>· R$ ${alt.preco}</span></p><p class="alttxt">${esc(altTxt)}</p></div>
+      <a class="altbtn" id="altBtn" href="${withUtm(alt.link)?esc(withUtm(alt.link)):"#"}" target="_blank" rel="noopener">Escolher este</a></div>
+    <button class="restart" type="button" id="again">Refazer o diagnóstico</button>
+    ${rodape()}
+  </section>`;
+  requestAnimationFrame(drawMaps);
+  document.getElementById("again").onclick=intro;
+  const buy=document.getElementById("buyBtn"), chk=document.getElementById("bumpChk");
+  if(["0","1-10"].includes(state.avaliacoes)||p==="invisivel"||state.responde==="nunca") chk.checked=true;
+  const upd=()=>{ if(withUtm(oferta.link)){ try{ const u=new URL(withUtm(oferta.link)); if(chk.checked) u.searchParams.set("bump","1"); else u.searchParams.delete("bump"); buy.href=u.toString(); }catch(e){} } };
+  chk.onchange=upd; upd();
+  document.getElementById("altBtn").addEventListener("click",e=>{ if(!alt.link){ e.preventDefault(); document.getElementById("noLink").textContent="Link de compra ainda não configurado (CONFIG no topo do código)."; } });
+  track("ViewContent",{content_name:oferta.nome,value:+oferta.preco,currency:"BRL"});
+  buy.addEventListener("click",()=>track("InitiateCheckout",{content_name:oferta.nome,value:+oferta.preco+(chk.checked?+CONFIG.bump.preco:0),currency:"BRL"}));
+  buy.addEventListener("click",e=>{ if(!withUtm(oferta.link)){ e.preventDefault(); document.getElementById("noLink").textContent="Link de compra ainda não configurado (CONFIG no topo do código)."; } });
+  window.scrollTo({top:0});
+  mapCollapse();
+}
+
+/* o mapa encolhe e sai conforme a página desce no resultado */
+function mapCollapse(){
+  const el=document.querySelector("#rmap .gm-map"), wrap=document.getElementById("rmap");
+  if(!el||!wrap) return;
+  const H=el.offsetHeight;
+  const top0 = wrap.getBoundingClientRect().top + window.scrollY;
+  const on=()=>{
+    if(view.dataset.key!=="RESULT"){ window.removeEventListener("scroll",on); return; }
+    const d=Math.max(0, window.scrollY - (top0 - window.innerHeight*.35));
+    const h=Math.max(0, H - d*.9);
+    el.style.height=h+"px";
+    wrap.style.transform = RM ? "" : `scale(${1 - Math.min(d,240)/240*0.06})`;
+  };
+  window.addEventListener("scroll",on,{passive:true}); on();
+}
+
+let rz; window.addEventListener("resize",()=>{ clearTimeout(rz); rz=setTimeout(drawMaps,100); });
+intro();
+consent();
+</script>
+
+</body>
+</html>
